@@ -1,0 +1,11 @@
+<svg width="600" height="400" viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="photo1" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" style="stop-color:#ec4899;stop-opacity:1" />
+<stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+</linearGradient>
+</defs>
+<rect width="600" height="400" fill="url(#photo1)"/>
+<circle cx="300" cy="200" r="80" fill="white" opacity="0.2"/>
+<text x="300" y="360" text-anchor="middle" fill="white" font-family="Inter, sans-serif" font-size="16">Featured Photo 1</text>
+</svg>

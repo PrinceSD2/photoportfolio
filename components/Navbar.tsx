@@ -13,8 +13,10 @@ export function Navbar() {
 
   const navigation = [
     { name: 'Home', href: '/' },
-    { name: 'Projects', href: '/projects' },
-    { name: 'Resume', href: '/resume' },
+    { name: 'Photography', href: '/photography' },
+    { name: 'Videography', href: '/videography' },
+    { name: 'Behind The Scenes', href: '/bts' },
+    { name: 'About', href: '/about' },
     { name: 'Contact', href: '/contact' },
   ]
 
@@ -24,7 +26,7 @@ export function Navbar() {
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link href="/" className="text-xl font-bold gradient-text">
-              Prince K.
+              Mohit Yadav
             </Link>
           </div>
 

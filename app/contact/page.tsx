@@ -2,12 +2,14 @@
 
 import { motion } from 'framer-motion'
 import { useState } from 'react'
-import { Send, Mail, Phone, MapPin, Github, Linkedin, Twitter } from 'lucide-react'
+import { Send, Mail, Phone, MapPin, Instagram, Linkedin, Clock, CheckCircle } from 'lucide-react'
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    projectType: '',
+    budget: '',
     message: ''
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -18,14 +20,14 @@ export default function ContactPage() {
     setIsSubmitting(true)
     
     // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000))
+    await new Promise(resolve => setTimeout(resolve, 1500))
     
     setIsSubmitting(false)
     setIsSubmitted(true)
-    setFormData({ name: '', email: '', message: '' })
+    setFormData({ name: '', email: '', projectType: '', budget: '', message: '' })
   }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
@@ -33,217 +35,288 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 pt-20">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
-        >
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">
-            <span className="gradient-text">Get In Touch</span>
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Have a project in mind or want to discuss opportunities? 
-            I'd love to hear from you. Let's create something amazing together.
-          </p>
-        </motion.div>
+    <div className="min-h-screen pt-16">
+      {/* Hero Section */}
+      <section className="py-20 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <h1 className="text-5xl md:text-6xl font-bold mb-6 text-gray-900 dark:text-white">
+              Get In Touch
+            </h1>
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+              Ready to bring your vision to life? Let's discuss your photography or videography project. 
+              I'm here to help capture your story in the most beautiful way possible.
+            </p>
+          </motion.div>
+        </div>
+      </section>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid lg:grid-cols-3 gap-12">
           {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="bg-card rounded-lg p-8 shadow-lg"
+            className="lg:col-span-2"
           >
-            <h2 className="text-2xl font-bold mb-6">Send me a message</h2>
-            
-            {isSubmitted ? (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="text-center py-8"
-              >
-                <div className="w-16 h-16 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Send className="w-8 h-8 text-green-500" />
-                </div>
-                <h3 className="text-xl font-semibold mb-2">Message Sent!</h3>
-                <p className="text-muted-foreground">Thank you for reaching out. I'll get back to you soon.</p>
-              </motion.div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium mb-2">
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 bg-background border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
-                    placeholder="Your name"
-                  />
-                </div>
-                
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium mb-2">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 bg-background border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
-                    placeholder="your.email@example.com"
-                  />
-                </div>
-                
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium mb-2">
-                    Message
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    rows={6}
-                    className="w-full px-4 py-3 bg-background border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors resize-none"
-                    placeholder="Tell me about your project or what you'd like to discuss..."
-                  />
-                </div>
-                
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full btn-primary flex items-center justify-center gap-2 py-3 disabled:opacity-50 disabled:cursor-not-allowed"
+            <div className="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-xl">
+              <h2 className="text-3xl font-bold mb-8 text-gray-900 dark:text-white">
+                Let's Start Something Amazing
+              </h2>
+              
+              {isSubmitted ? (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="text-center py-12"
                 >
-                  {isSubmitting ? (
-                    <>
-                      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                      Sending...
-                    </>
-                  ) : (
-                    <>
-                      <Send className="w-4 h-4" />
-                      Send Message
-                    </>
-                  )}
-                </button>
-              </form>
-            )}
+                  <div className="w-20 h-20 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <CheckCircle className="w-10 h-10 text-green-600" />
+                  </div>
+                  <h3 className="text-2xl font-bold mb-3 text-gray-900 dark:text-white">Message Sent Successfully!</h3>
+                  <p className="text-gray-600 dark:text-gray-300 mb-6">
+                    Thank you for reaching out. I'll get back to you within 24 hours to discuss your project in detail.
+                  </p>
+                  <button
+                    onClick={() => setIsSubmitted(false)}
+                    className="text-blue-600 hover:text-blue-700 font-medium"
+                  >
+                    Send Another Message
+                  </button>
+                </motion.div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        Full Name *
+                      </label>
+                      <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        required
+                        className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 text-gray-900 dark:text-white"
+                        placeholder="Your full name"
+                      />
+                    </div>
+                    
+                    <div>
+                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        Email Address *
+                      </label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
+                        className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 text-gray-900 dark:text-white"
+                        placeholder="your.email@example.com"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <label htmlFor="projectType" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        Project Type *
+                      </label>
+                      <select
+                        id="projectType"
+                        name="projectType"
+                        value={formData.projectType}
+                        onChange={handleChange}
+                        required
+                        className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 text-gray-900 dark:text-white"
+                      >
+                        <option value="">Select project type</option>
+                        <option value="wedding">Wedding Photography/Videography</option>
+                        <option value="portrait">Portrait Session</option>
+                        <option value="corporate">Corporate Event</option>
+                        <option value="product">Product Photography</option>
+                        <option value="food">Food Photography</option>
+                        <option value="travel">Travel Photography</option>
+                        <option value="other">Other</option>
+                      </select>
+                    </div>
+                    
+                    <div>
+                      <label htmlFor="budget" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        Budget Range
+                      </label>
+                      <select
+                        id="budget"
+                        name="budget"
+                        value={formData.budget}
+                        onChange={handleChange}
+                        className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 text-gray-900 dark:text-white"
+                      >
+                        <option value="">Select budget range</option>
+                        <option value="under-25k">Under ₹25,000</option>
+                        <option value="25k-50k">₹25,000 - ₹50,000</option>
+                        <option value="50k-100k">₹50,000 - ₹1,00,000</option>
+                        <option value="100k-200k">₹1,00,000 - ₹2,00,000</option>
+                        <option value="above-200k">Above ₹2,00,000</option>
+                      </select>
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                      Project Details *
+                    </label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      required
+                      rows={6}
+                      className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 resize-none text-gray-900 dark:text-white"
+                      placeholder="Tell me about your project, event date, location, specific requirements, and any other details that would help me understand your vision..."
+                    />
+                  </div>
+                  
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full bg-blue-600 text-white py-4 rounded-lg font-semibold hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                        Sending Message...
+                      </>
+                    ) : (
+                      <>
+                        <Send className="w-5 h-5" />
+                        Send Message
+                      </>
+                    )}
+                  </button>
+                </form>
+              )}
+            </div>
           </motion.div>
 
-          {/* Contact Info */}
+          {/* Contact Information Sidebar */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
             className="space-y-8"
           >
-            <div className="bg-card rounded-lg p-8 shadow-lg">
-              <h2 className="text-2xl font-bold mb-6">Contact Information</h2>
+            {/* Contact Details */}
+            <div className="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-xl">
+              <h3 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Contact Information</h3>
               
-              <div className="space-y-4">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-                    <Mail className="w-6 h-6 text-primary" />
+              <div className="space-y-6">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Mail className="w-6 h-6 text-blue-600" />
                   </div>
                   <div>
-                    <h3 className="font-semibold">Email</h3>
-                    <p className="text-muted-foreground">prince@example.com</p>
+                    <h4 className="font-semibold text-gray-900 dark:text-white">Email</h4>
+                    <a href="mailto:mohitydv6014@gmail.com" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 transition-colors">
+                      mohitydv6014@gmail.com
+                    </a>
                   </div>
                 </div>
                 
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-                    <Phone className="w-6 h-6 text-primary" />
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Phone className="w-6 h-6 text-green-600" />
                   </div>
                   <div>
-                    <h3 className="font-semibold">Phone</h3>
-                    <p className="text-muted-foreground">+91 99999 99999</p>
+                    <h4 className="font-semibold text-gray-900 dark:text-white">Phone</h4>
+                    <a href="tel:+918920557478" className="text-gray-600 dark:text-gray-300 hover:text-green-600 transition-colors">
+                      +91 8920557478
+                    </a>
                   </div>
                 </div>
                 
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-                    <MapPin className="w-6 h-6 text-primary" />
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <MapPin className="w-6 h-6 text-purple-600" />
                   </div>
                   <div>
-                    <h3 className="font-semibold">Location</h3>
-                    <p className="text-muted-foreground">India</p>
+                    <h4 className="font-semibold text-gray-900 dark:text-white">Location</h4>
+                    <p className="text-gray-600 dark:text-gray-300">Gurugram, India</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">Available for travel nationwide</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-orange-100 dark:bg-orange-900/30 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Clock className="w-6 h-6 text-orange-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-900 dark:text-white">Response Time</h4>
+                    <p className="text-gray-600 dark:text-gray-300">Within 24 hours</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">Usually much faster!</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="bg-card rounded-lg p-8 shadow-lg">
-              <h2 className="text-2xl font-bold mb-6">Let's Connect</h2>
-              <p className="text-muted-foreground mb-6">
-                Follow me on social media for updates on my latest projects and insights.
-              </p>
+            {/* Social Media */}
+            <div className="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-xl">
+              <h3 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Follow My Work</h3>
               
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-2 gap-4">
                 <a
-                  href="https://github.com"
+                  href="https://instagram.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex flex-col items-center p-4 bg-background rounded-lg hover:bg-accent transition-colors group"
+                  className="flex flex-col items-center p-4 bg-gradient-to-br from-pink-500 to-purple-600 rounded-lg text-white hover:scale-105 transition-transform duration-300"
                 >
-                  <Github className="w-8 h-8 mb-2 group-hover:scale-110 transition-transform" />
-                  <span className="text-sm font-medium">GitHub</span>
+                  <Instagram className="w-8 h-8 mb-2" />
+                  <span className="text-sm font-medium">Instagram</span>
                 </a>
                 
                 <a
                   href="https://linkedin.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex flex-col items-center p-4 bg-background rounded-lg hover:bg-accent transition-colors group"
+                  className="flex flex-col items-center p-4 bg-blue-600 rounded-lg text-white hover:scale-105 transition-transform duration-300"
                 >
-                  <Linkedin className="w-8 h-8 mb-2 group-hover:scale-110 transition-transform" />
+                  <Linkedin className="w-8 h-8 mb-2" />
                   <span className="text-sm font-medium">LinkedIn</span>
                 </a>
-                
-                <a
-                  href="https://twitter.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex flex-col items-center p-4 bg-background rounded-lg hover:bg-accent transition-colors group"
-                >
-                  <Twitter className="w-8 h-8 mb-2 group-hover:scale-110 transition-transform" />
-                  <span className="text-sm font-medium">Twitter</span>
-                </a>
               </div>
+              
+              <p className="text-sm text-gray-600 dark:text-gray-300 mt-4 text-center">
+                See my latest work and behind-the-scenes content
+              </p>
             </div>
 
-            <div className="bg-card rounded-lg p-8 shadow-lg">
-              <h2 className="text-2xl font-bold mb-4">Let's Work Together</h2>
-              <p className="text-muted-foreground mb-4">
-                I'm always interested in new opportunities and exciting projects. 
-                Whether you need development work, project coordination, or technical consulting, 
-                I'd love to discuss how we can work together.
-              </p>
-              <div className="space-y-2 text-sm">
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                  <span>Available for freelance projects</span>
+            {/* FAQ */}
+            <div className="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-xl">
+              <h3 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Quick FAQ</h3>
+              
+              <div className="space-y-4">
+                <div>
+                  <h4 className="font-semibold text-gray-900 dark:text-white mb-1">How far in advance should I book?</h4>
+                  <p className="text-sm text-gray-600 dark:text-gray-300">For weddings: 6-12 months. For other sessions: 2-4 weeks.</p>
                 </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                  <span>Open to full-time opportunities</span>
+                
+                <div>
+                  <h4 className="font-semibold text-gray-900 dark:text-white mb-1">Do you travel for shoots?</h4>
+                  <p className="text-sm text-gray-600 dark:text-gray-300">Yes! I travel across India. Travel costs may apply for destinations outside Delhi NCR.</p>
                 </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                  <span>Available for consulting</span>
+                
+                <div>
+                  <h4 className="font-semibold text-gray-900 dark:text-white mb-1">What's included in your packages?</h4>
+                  <p className="text-sm text-gray-600 dark:text-gray-300">High-resolution edited photos, online gallery, and professional consultation. Video packages include raw footage and edited highlights.</p>
                 </div>
               </div>
             </div>

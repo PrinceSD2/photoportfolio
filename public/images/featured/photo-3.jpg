@@ -1,0 +1,5 @@
+<svg width="600" height="400" viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="600" height="400" fill="#f59e0b"/>
+<polygon points="100,300 200,200 300,250 400,180 500,220 600,300 600,400 0,400" fill="white" opacity="0.2"/>
+<text x="300" y="360" text-anchor="middle" fill="white" font-family="Inter, sans-serif" font-size="16">Featured Photo 3</text>
+</svg>

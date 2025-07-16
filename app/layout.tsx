@@ -6,8 +6,25 @@ import { ThemeProvider } from '@/components/ThemeProvider'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Prince Kushwaha - Developer & Coordinator',
-  description: 'Blending Operations & Technology for Smart Solutions',
+  title: 'Mohit Yadav - Photographer & Cinematographer',
+  description: 'Capturing moments. Telling stories. Framing reality. Professional photographer and cinematographer based in Gurugram, India.',
+  keywords: 'photographer, cinematographer, photography, videography, Gurugram, India, Mohit Yadav',
+  author: 'Mohit Yadav',
+  openGraph: {
+    title: 'Mohit Yadav - Photographer & Cinematographer',
+    description: 'Capturing moments. Telling stories. Framing reality.',
+    url: 'https://mohityadav.com',
+    siteName: 'Mohit Yadav Portfolio',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
 }
 
 export default function RootLayout({
