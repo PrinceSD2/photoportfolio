@@ -13,8 +13,17 @@ const heroImages = [
   '/images/hero/hero4.jpg',
 ]
 
+const circularImages = [
+  '/images/circular/wildlife1.jpg',
+  '/images/circular/travel1.jpg',
+  '/images/circular/wildlife2.jpg',
+  '/images/circular/travel2.jpg',
+  '/images/circular/wildlife3.jpg',
+]
+
 export default function HomePage() {
   const [currentImage, setCurrentImage] = useState(0)
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -26,6 +35,20 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen">
+      <div className="hidden md:block">
+        <div className="fixed bottom-8 right-8 flex space-x-2 z-50">
+          {heroImages.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentImage(index)}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                index === currentImage ? 'bg-white' : 'bg-white/50'
+              }`}
+            />
+          ))}
+        </div>
+      </div>
+
       {/* Hero Section */}
       <section className="relative h-screen overflow-hidden">
         {/* Background Slideshow */}
@@ -47,68 +70,152 @@ export default function HomePage() {
               />
             </motion.div>
           ))}
-          <div className="absolute inset-0 bg-black/40" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent" />
         </div>
 
         {/* Hero Content */}
-        <div className="relative z-10 flex items-center justify-center h-full text-center text-white">
+        <div className="relative z-10 flex flex-col md:flex-row items-center justify-center h-full text-white">
+          {/* Left Content */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.5 }}
-            className="max-w-4xl mx-auto px-4"
+            className="w-full md:w-1/2 px-6 md:px-12 py-12"
           >
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.7 }}
-              className="text-5xl md:text-7xl font-bold mb-6 leading-tight"
-            >
-              Mohit Yadav
-            </motion.h1>
-            
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.9 }}
-              className="text-xl md:text-2xl mb-8 font-light"
-            >
-              Photographer & Cinematographer
-            </motion.p>
-            
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 1.1 }}
-              className="text-lg md:text-xl mb-12 max-w-2xl mx-auto opacity-90"
-            >
-              Capturing moments. Telling stories. Framing reality.
-            </motion.p>
-            
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 1.3 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-            >
-              <Link
-                href="/photography"
-                className="group bg-white text-black px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-all duration-300 flex items-center gap-2"
+            <div className="max-w-lg">
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 0.7 }}
+                className="text-4xl md:text-6xl font-bold mb-4 leading-tight"
               >
-                <Camera className="w-5 h-5" />
-                View Portfolio
-                <ChevronDown className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </Link>
+                Mohit Yadav
+              </motion.h1>
               
-              <Link
-                href="/videography"
-                className="group border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-black transition-all duration-300 flex items-center gap-2"
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 0.9 }}
+                className="text-xl md:text-2xl mb-6 font-light"
               >
-                <Video className="w-5 h-5" />
-                Watch Videos
-                <Play className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </motion.div>
+                Wildlife & Travel Photographer
+              </motion.p>
+              
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 1.1 }}
+                className="text-base md:text-lg mb-8 max-w-xl opacity-90"
+              >
+                <p className="mb-4">
+                  Based in Gurugram, India, I'm a passionate photographer specializing in wildlife and travel. 
+                  From intimate portraits to grand landscapes, I bring stories to life through my lens.
+                </p>
+                <p>
+                  When I'm not behind the camera, you'll find me exploring jungle safaris 
+                  and discovering the beauty of nature photography.
+                </p>
+              </motion.div>
+              
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 1.3 }}
+                className="flex flex-col sm:flex-row gap-4"
+              >
+                <Link
+                  href="/wildlife"
+                  className="group bg-white text-black px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-all duration-300 flex items-center gap-2"
+                >
+                  <Camera className="w-5 h-5" />
+                  Wildlife Gallery
+                </Link>
+                
+                <Link
+                  href="/travel"
+                  className="group border-2 border-white text-white px-6 py-3 rounded-full font-semibold hover:bg-white hover:text-black transition-all duration-300 flex items-center gap-2"
+                >
+                  <Video className="w-5 h-5" />
+                  Travel Adventures
+                </Link>
+              </motion.div>
+            </div>
+          </motion.div>
+
+          {/* Right Content - Circular Image Carousel */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.7 }}
+            className="hidden md:flex items-center justify-center w-full md:w-1/2 h-full relative"
+          >
+            <div className="relative w-[500px] h-[500px]">
+              {/* Circular Orbit */}
+              {circularImages.map((image, index) => {
+                const angle = (index * (360 / circularImages.length)) * (Math.PI / 180);
+                const radius = 200;
+                const x = Math.cos(angle) * radius;
+                const y = Math.sin(angle) * radius;
+                
+                return (
+                  <motion.div
+                    key={index}
+                    className="absolute top-1/2 left-1/2 w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-xl cursor-pointer"
+                    style={{
+                      x: x,
+                      y: y,
+                    }}
+                    animate={{
+                      rotate: 360,
+                      x: Math.cos(angle) * radius,
+                      y: Math.sin(angle) * radius,
+                    }}
+                    transition={{
+                      duration: 30,
+                      repeat: Infinity,
+                      ease: "linear",
+                    }}
+                    whileHover={{ 
+                      scale: 1.2,
+                      zIndex: 10,
+                      transition: { duration: 0.3 }
+                    }}
+                    onHoverStart={() => setHoveredIndex(index)}
+                    onHoverEnd={() => setHoveredIndex(null)}
+                  >
+                    <Image
+                      src={image}
+                      alt={`Wildlife & Travel ${index + 1}`}
+                      width={256}
+                      height={256}
+                      className="object-cover w-full h-full"
+                    />
+                    {hoveredIndex === index && (
+                      <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+                        <span className="text-white font-bold text-center px-2">
+                          {index % 2 === 0 ? 'Wildlife' : 'Travel'}
+                        </span>
+                      </div>
+                    )}
+                  </motion.div>
+                );
+              })}
+              
+              {/* Center Image */}
+              <motion.div
+                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-48 rounded-full overflow-hidden border-4 border-white shadow-2xl"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.3 }}
+              >
+                <Image
+                  src="/profile.jpg"
+                  alt="Mohit Yadav"
+                  width={256}
+                  height={256}
+                  className="object-cover w-full h-full"
+                />
+              </motion.div>
+            </div>
           </motion.div>
         </div>
 
@@ -126,19 +233,6 @@ export default function HomePage() {
             <ChevronDown className="w-6 h-6" />
           </motion.div>
         </motion.div>
-
-        {/* Slideshow Indicators */}
-        <div className="absolute bottom-8 right-8 flex space-x-2">
-          {heroImages.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentImage(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                index === currentImage ? 'bg-white' : 'bg-white/50'
-              }`}
-            />
-          ))}
-        </div>
       </section>
 
       {/* Featured Work Section */}
@@ -160,7 +254,7 @@ export default function HomePage() {
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {/* Photography Card */}
+            {/* Wildlife Card */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -168,25 +262,25 @@ export default function HomePage() {
               viewport={{ once: true }}
               className="group cursor-pointer"
             >
-              <Link href="/photography">
+              <Link href="/wildlife">
                 <div className="relative aspect-[4/5] overflow-hidden rounded-lg">
                   <Image
-                    src="/images/featured/photography.jpg"
-                    alt="Photography"
+                    src="/images/featured/wildlife.jpg"
+                    alt="Wildlife Photography"
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                   <div className="absolute bottom-6 left-6 text-white">
                     <Camera className="w-8 h-8 mb-3" />
-                    <h3 className="text-2xl font-bold mb-2">Photography</h3>
-                    <p className="text-sm opacity-90">Model • Food • Travel • Product</p>
+                    <h3 className="text-2xl font-bold mb-2">Wildlife</h3>
+                    <p className="text-sm opacity-90">Animals • Nature • Safari</p>
                   </div>
                 </div>
               </Link>
             </motion.div>
 
-            {/* Videography Card */}
+            {/* Travel Card */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -194,19 +288,19 @@ export default function HomePage() {
               viewport={{ once: true }}
               className="group cursor-pointer"
             >
-              <Link href="/videography">
+              <Link href="/travel">
                 <div className="relative aspect-[4/5] overflow-hidden rounded-lg">
                   <Image
-                    src="/images/featured/videography.jpg"
-                    alt="Videography"
+                    src="/images/featured/travel.jpg"
+                    alt="Travel Photography"
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                   <div className="absolute bottom-6 left-6 text-white">
                     <Video className="w-8 h-8 mb-3" />
-                    <h3 className="text-2xl font-bold mb-2">Videography</h3>
-                    <p className="text-sm opacity-90">Wedding • Corporate • Promo</p>
+                    <h3 className="text-2xl font-bold mb-2">Travel</h3>
+                    <p className="text-sm opacity-90">Landscapes • Culture • Adventures</p>
                   </div>
                 </div>
               </Link>
@@ -238,57 +332,6 @@ export default function HomePage() {
                   </div>
                 </div>
               </Link>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* About Preview Section */}
-      <section className="py-20 bg-gray-50 dark:bg-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-4xl font-bold mb-6 text-gray-900 dark:text-white">
-                About Mohit
-              </h2>
-              <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
-                Based in Gurugram, India, I'm a passionate photographer and cinematographer 
-                with years of experience capturing life's most precious moments. From intimate 
-                portraits to grand landscapes, I bring stories to life through my lens.
-              </p>
-              <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
-                When I'm not behind the camera, you'll find me exploring jungle safaris 
-                and discovering the beauty of nature photography.
-              </p>
-              <Link
-                href="/about"
-                className="inline-flex items-center gap-2 text-lg font-semibold text-blue-600 hover:text-blue-700 transition-colors"
-              >
-                Learn More About Me
-                <ChevronDown className="w-5 h-5 rotate-[-90deg]" />
-              </Link>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="relative"
-            >
-              <div className="relative aspect-[4/5] rounded-lg overflow-hidden">
-                <Image
-                  src="/profile.jpg"
-                  alt="Mohit Yadav"
-                  fill
-                  className="object-cover"
-                />
-              </div>
             </motion.div>
           </div>
         </div>

@@ -12,10 +12,13 @@ export function Navbar() {
   const { theme, setTheme } = useTheme()
 
   const navigation = [
-    { name: 'Home', href: '/' },
+    { name: 'Overview', href: '/' },
+  
     { name: 'Photography', href: '/photography' },
-    { name: 'Videography', href: '/videography' },
-    { name: 'Behind The Scenes', href: '/bts' },
+    { name: 'Videography/BTS', href: '/videography' },
+    // { name: 'Behind The Scenes', href: '/bts' },
+      { name: 'Wildlife', href: '/wildlife' },
+    { name: 'Travel', href: '/travel' },
     { name: 'About', href: '/about' },
     { name: 'Contact', href: '/contact' },
   ]
