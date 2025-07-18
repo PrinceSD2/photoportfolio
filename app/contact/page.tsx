@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 import { Send, Mail, Phone, MapPin, Instagram, Linkedin, Clock, CheckCircle } from 'lucide-react'
+import emailjs from '@emailjs/browser'
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -18,13 +19,26 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-    
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500))
-    
+
+    try {
+      await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          project_type: formData.projectType,
+          budget: formData.budget,
+          message: formData.message,
+        },
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+      )
+      setIsSubmitted(true)
+      setFormData({ name: '', email: '', projectType: '', budget: '', message: '' })
+    } catch (error) {
+      alert('Failed to send message. Please try again later.')
+    }
     setIsSubmitting(false)
-    setIsSubmitted(true)
-    setFormData({ name: '', email: '', projectType: '', budget: '', message: '' })
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -227,7 +241,7 @@ export default function ContactPage() {
                   <div>
                     <h4 className="font-semibold text-gray-900 dark:text-white">Email</h4>
                     <a href="mailto:mohitydv6014@gmail.com" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 transition-colors">
-                      mohitydv6014@gmail.com
+                      mohityv14@gmail.com
                     </a>
                   </div>
                 </div>
@@ -283,15 +297,7 @@ export default function ContactPage() {
                   <span className="text-sm font-medium">Instagram</span>
                 </a>
                 
-                <a
-                  href="https://linkedin.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex flex-col items-center p-4 bg-blue-600 rounded-lg text-white hover:scale-105 transition-transform duration-300"
-                >
-                  <Linkedin className="w-8 h-8 mb-2" />
-                  <span className="text-sm font-medium">LinkedIn</span>
-                </a>
+              
               </div>
               
               <p className="text-sm text-gray-600 dark:text-gray-300 mt-4 text-center">
@@ -306,7 +312,7 @@ export default function ContactPage() {
               <div className="space-y-4">
                 <div>
                   <h4 className="font-semibold text-gray-900 dark:text-white mb-1">How far in advance should I book?</h4>
-                  <p className="text-sm text-gray-600 dark:text-gray-300">For weddings: 6-12 months. For other sessions: 2-4 weeks.</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-300">  advance booking: 2-4 weeks.</p>
                 </div>
                 
                 <div>
