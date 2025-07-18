@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import { ChevronDown, Play, Camera, Video, Instagram, Mail } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 const heroImages = [
   '/images/hero/hero1.jpg',
@@ -13,18 +13,20 @@ const heroImages = [
   '/images/hero/hero4.jpg',
 ]
 
-const circularImages = [
-  '/images/circular/wildlife1.jpg',
-  '/images/circular/travel1.jpg',
-  '/images/circular/wildlife2.jpg',
-  '/images/circular/travel2.jpg',
-  '/images/circular/wildlife3.jpg',
+// Added slider images
+const sliderImages = [
+  '/images/slider/slide1.jpg',
+  '/images/slider/slide2.jpg',
+  '/images/slider/slide3.jpg',
+  '/images/slider/slide4.jpg',
 ]
 
 export default function HomePage() {
   const [currentImage, setCurrentImage] = useState(0)
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
+  const [currentSlider, setCurrentSlider] = useState(0)
+  const sliderRef = useRef<HTMLDivElement>(null)
 
+  // Hero image slideshow effect
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImage((prev) => (prev + 1) % heroImages.length)
@@ -32,6 +34,20 @@ export default function HomePage() {
 
     return () => clearInterval(interval)
   }, [])
+
+  // Slider auto-play effect
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlider((prev) => (prev + 1) % sliderImages.length)
+    }, 3000)
+
+    return () => clearInterval(interval)
+  }, [])
+
+  // Handle slider navigation
+  const goToSlide = (index: number) => {
+    setCurrentSlider(index)
+  }
 
   return (
     <div className="min-h-screen">
@@ -49,8 +65,8 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* Hero Section */}
-      <section className="relative h-screen overflow-hidden">
+      {/* Hero Section - Height decreased */}
+      <section className="relative h-[85vh] overflow-hidden">
         {/* Background Slideshow */}
         <div className="absolute inset-0">
           {heroImages.map((image, index) => (
@@ -74,8 +90,8 @@ export default function HomePage() {
         </div>
 
         {/* Hero Content */}
-        <div className="relative z-10 flex flex-col md:flex-row items-center justify-center h-full text-white">
-          {/* Left Content */}
+        <div className="relative z-10 flex flex-col md:flex-row items-center justify-left h-full text-white">
+          {/* Left Content - Profile photo added */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -83,6 +99,24 @@ export default function HomePage() {
             className="w-full md:w-1/2 px-6 md:px-12 py-12"
           >
             <div className="max-w-lg">
+              {/* Profile Photo - Added */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 0.6 }}
+                className="mb-6"
+              >
+                <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-xl">
+                  <Image
+                    src="/images/hero/hero1.jpg"
+                    alt="Mohit Yadav"
+                    width={128}
+                    height={128}
+                    className="object-cover w-full h-full"
+                  />
+                </div>
+              </motion.div>
+              
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -142,81 +176,7 @@ export default function HomePage() {
             </div>
           </motion.div>
 
-          {/* Right Content - Circular Image Carousel */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.7 }}
-            className="hidden md:flex items-center justify-center w-full md:w-1/2 h-full relative"
-          >
-            <div className="relative w-[500px] h-[500px]">
-              {/* Circular Orbit */}
-              {circularImages.map((image, index) => {
-                const angle = (index * (360 / circularImages.length)) * (Math.PI / 180);
-                const radius = 200;
-                const x = Math.cos(angle) * radius;
-                const y = Math.sin(angle) * radius;
-                
-                return (
-                  <motion.div
-                    key={index}
-                    className="absolute top-1/2 left-1/2 w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-xl cursor-pointer"
-                    style={{
-                      x: x,
-                      y: y,
-                    }}
-                    animate={{
-                      rotate: 360,
-                      x: Math.cos(angle) * radius,
-                      y: Math.sin(angle) * radius,
-                    }}
-                    transition={{
-                      duration: 30,
-                      repeat: Infinity,
-                      ease: "linear",
-                    }}
-                    whileHover={{ 
-                      scale: 1.2,
-                      zIndex: 10,
-                      transition: { duration: 0.3 }
-                    }}
-                    onHoverStart={() => setHoveredIndex(index)}
-                    onHoverEnd={() => setHoveredIndex(null)}
-                  >
-                    <Image
-                      src={image}
-                      alt={`Wildlife & Travel ${index + 1}`}
-                      width={256}
-                      height={256}
-                      className="object-cover w-full h-full"
-                    />
-                    {hoveredIndex === index && (
-                      <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-                        <span className="text-white font-bold text-center px-2">
-                          {index % 2 === 0 ? 'Wildlife' : 'Travel'}
-                        </span>
-                      </div>
-                    )}
-                  </motion.div>
-                );
-              })}
-              
-              {/* Center Image */}
-              <motion.div
-                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-48 rounded-full overflow-hidden border-4 border-white shadow-2xl"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.3 }}
-              >
-                <Image
-                  src="/profile.jpg"
-                  alt="Mohit Yadav"
-                  width={256}
-                  height={256}
-                  className="object-cover w-full h-full"
-                />
-              </motion.div>
-            </div>
-          </motion.div>
+          
         </div>
 
         {/* Scroll Indicator */}
@@ -252,8 +212,8 @@ export default function HomePage() {
               A curated selection of my best photography and cinematography work
             </p>
           </motion.div>
-
-          <div className="grid md:grid-cols-3 gap-8">
+          
+          <div className="relative h-[85vh] overflow-hidden">
             {/* Wildlife Card */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -280,33 +240,10 @@ export default function HomePage() {
               </Link>
             </motion.div>
 
-            {/* Travel Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="group cursor-pointer"
-            >
-              <Link href="/travel">
-                <div className="relative aspect-[4/5] overflow-hidden rounded-lg">
-                  <Image
-                    src="/images/featured/travel.jpg"
-                    alt="Travel Photography"
-                    fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-                  <div className="absolute bottom-6 left-6 text-white">
-                    <Video className="w-8 h-8 mb-3" />
-                    <h3 className="text-2xl font-bold mb-2">Travel</h3>
-                    <p className="text-sm opacity-90">Landscapes • Culture • Adventures</p>
-                  </div>
-                </div>
-              </Link>
-            </motion.div>
-
-            {/* Behind The Scenes Card */}
+            
+          </div>
+           <div className="relative h-[85vh] overflow-hidden">
+          {/* Behind The Scenes Card */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -333,6 +270,39 @@ export default function HomePage() {
                 </div>
               </Link>
             </motion.div>
+               
+
+            
+          </div>
+           <div className="relative h-[85vh] overflow-hidden">
+           {/* Travel Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="group cursor-pointer"
+            >
+              <Link href="/travel">
+                <div className="relative aspect-[4/5] overflow-hidden rounded-lg">
+                  <Image
+                    src="/images/photography/travel/travel1.jpg"
+                    alt="Travel Photography"
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                  <div className="absolute bottom-6 left-6 text-white">
+                    <Video className="w-8 h-8 mb-3" />
+                    <h3 className="text-2xl font-bold mb-2">Travel</h3>
+                    <p className="text-sm opacity-90">Landscapes • Culture • Adventures</p>
+                  </div>
+                </div>
+              </Link>
+            </motion.div>
+
+            
+            
           </div>
         </div>
       </section>

@@ -24,41 +24,43 @@ export function Navbar() {
   ]
 
   return (
-    <nav className="fixed top-0 w-full bg-background/80 backdrop-blur-md border-b border-border z-50">
+    <nav className="fixed top-0 left-0 w-full bg-background/80 backdrop-blur-md border-b border-border z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
-          <div className="flex items-center">
-            <Link href="/" className="text-xl font-bold gradient-text">
-              Mohit Yadav
-            </Link>
-          </div>
+      <div className="flex justify-between h-16">
+        {/* Move the logo to the far left */}
+<div className="flex items-center flex-shrink-0 -ml-80">  {/* Negative margin example */}
+  <Link href="/" className="text-xl font-bold gradient-text">
+    Mohit Raw Photography
+  </Link>
+</div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className={`text-sm font-medium transition-colors hover:text-primary ${
-                  pathname === item.href
-                    ? 'text-primary'
-                    : 'text-muted-foreground'
-                }`}
-              >
-                {item.name}
-              </Link>
-            ))}
-            
-            <button
-              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-              className="p-2 rounded-md hover:bg-accent"
+         <div className="hidden md:flex items-center space-x-20">  {/* Increased from space-x-8 */}
+          {navigation.map((item) => (
+            <Link
+              key={item.name}
+              href={item.href}
+              className={`text-sm font-medium transition-colors hover:text-primary ${
+                pathname === item.href
+                  ? 'text-primary'
+                  : 'text-muted-foreground'
+              }`}
             >
-              {theme === 'dark' ? (
-                <Sun className="w-5 h-5" />
-              ) : (
-                <Moon className="w-5 h-5" />
-              )}
-            </button>
+              {item.name}
+            </Link>
+          ))}
+
+            
+           <button
+    onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+    className="absolute right-4 p-2 rounded-md hover:bg-accent" // right-4 adds spacing
+  >
+    {theme === 'dark' ? (
+      <Sun className="w-5 h-5" />
+    ) : (
+      <Moon className="w-5 h-5" />
+    )}
+  </button>
           </div>
 
           {/* Mobile menu button */}
