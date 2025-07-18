@@ -220,36 +220,27 @@ export default function HomePage() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.1 }}
         viewport={{ once: true }}
-        className="group cursor-pointer w-full max-w-4xl"
+        className="group cursor-pointer w-full max-w-[1950px] max-h-auto"
       >
         <Link href="/wildlife">
           <div className="relative aspect-video overflow-hidden rounded-xl shadow-2xl">
-            <Image
-              src="/images/featured/wildlife.jpg"
-              alt="Wildlife Photography"
-              fill
-              className="object-cover group-hover:scale-110 transition-transform duration-700"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-            <div className="absolute bottom-8 left-8 text-white">
-              <Camera className="w-8 h-8 mb-3" />
-              <h3 className="text-3xl font-bold mb-2">Wildlife</h3>
-              <p className="text-base opacity-90">Animals • Nature • Safari</p>
-            </div>
+        <Image
+          src="/images/hero/hero4.jpg"
+          alt="Wildlife Photography"
+          fill
+          className="object-cover group-hover:scale-110 transition-transform duration-700"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+        <div className="absolute bottom-8 left-8 text-white">
+          <Camera className="w-8 h-8 mb-3" />
+          <h3 className="text-3xl font-bold mb-2">Wildlife</h3>
+          <p className="text-base opacity-90">Animals • Nature • Safari</p>
+        </div>
           </div>
         </Link>
       </motion.div>
 
-      {/* Down Arrow */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-        viewport={{ once: true }}
-        className="text-gray-400"
-      >
-        <ChevronDown className="w-10 h-10" />
-      </motion.div>
+      
 
       {/* Travel Card */}
       <motion.div
@@ -257,12 +248,12 @@ export default function HomePage() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.3 }}
         viewport={{ once: true }}
-        className="group cursor-pointer w-full max-w-4xl"
+        className="group cursor-pointer w-full max-w-[1950px] max-h-auto"
       >
         <Link href="/travel">
           <div className="relative aspect-video overflow-hidden rounded-xl shadow-2xl">
             <Image
-              src="/images/featured/travel.jpg"
+              src="/images/hero/hero4.jpg"
               alt="Travel Photography"
               fill
               className="object-cover group-hover:scale-110 transition-transform duration-700"
@@ -277,29 +268,19 @@ export default function HomePage() {
         </Link>
       </motion.div>
 
-      {/* Down Arrow */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 0.4 }}
-        viewport={{ once: true }}
-        className="text-gray-400"
-      >
-        <ChevronDown className="w-10 h-10" />
-      </motion.div>
-
+      
       {/* Behind The Scenes Card */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.5 }}
         viewport={{ once: true }}
-        className="group cursor-pointer w-full max-w-4xl"
+        className="group cursor-pointer w-full max-w-[1950px] max-h-auto"
       >
         <Link href="/bts">
           <div className="relative aspect-video overflow-hidden rounded-xl shadow-2xl">
             <Image
-              src="/images/featured/bts.jpg"
+              src="/images/hero/hero4.jpg"
               alt="Behind The Scenes"
               fill
               className="object-cover group-hover:scale-110 transition-transform duration-700"
