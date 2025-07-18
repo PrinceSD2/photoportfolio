@@ -22,27 +22,27 @@ const categoryData: Record<string, {
   model: {
     name: 'Model Photography',
     description: 'Capturing the essence of beauty, personality, and style through intimate and fashion portraits.',
-    images: Array.from({ length: 12 }, (_, i) => `/images/photography/model/model-${i + 1}.jpg`)
+    images: Array.from({ length: 10 }, (_, i) => `/images/photography/model/model${i + 1}.jpg`)
   },
   food: {
     name: 'Food Photography',
     description: 'Making culinary creations irresistible through artistic composition and lighting.',
-    images: Array.from({ length: 8 }, (_, i) => `/images/photography/food/food-${i + 1}.jpg`)
+    images: Array.from({ length: 10 }, (_, i) => `/images/photography/food/food${i + 1}.jpg`)
   },
   travel: {
     name: 'Travel Photography',
     description: 'Documenting adventures and capturing the soul of places around the world.',
-    images: Array.from({ length: 15 }, (_, i) => `/images/photography/travel/travel-${i + 1}.jpg`)
+    images: Array.from({ length: 10 }, (_, i) => `/images/photography/travel/travel${i + 1}.jpg`)
   },
   hotel: {
     name: 'Hotel Photography',
     description: 'Showcasing hospitality spaces with architectural precision and inviting atmosphere.',
-    images: Array.from({ length: 10 }, (_, i) => `/images/photography/hotel/hotel-${i + 1}.jpg`)
+    images: Array.from({ length: 10 }, (_, i) => `/images/photography/hotel/hotel${i + 1}.jpg`)
   },
   product: {
     name: 'Product Photography',
     description: 'Commercial photography that highlights features and creates desire for products.',
-    images: Array.from({ length: 14 }, (_, i) => `/images/photography/product/product-${i + 1}.jpg`)
+    images: Array.from({ length: 10 }, (_, i) => `/images/photography/product/product${i + 1}.jpg`)
   }
 }
 
