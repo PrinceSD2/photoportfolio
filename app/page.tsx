@@ -197,115 +197,127 @@ export default function HomePage() {
 
       {/* Featured Work Section */}
       <section className="py-20 bg-white dark:bg-gray-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
-              Featured Work
-            </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              A curated selection of my best photography and cinematography work
-            </p>
-          </motion.div>
-          
-          <div className="relative h-[85vh] overflow-hidden">
-            {/* Wildlife Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1 }}
-              viewport={{ once: true }}
-              className="group cursor-pointer"
-            >
-              <Link href="/wildlife">
-                <div className="relative aspect-[4/5] overflow-hidden rounded-lg">
-                  <Image
-                    src="/images/featured/wildlife.jpg"
-                    alt="Wildlife Photography"
-                    fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-                  <div className="absolute bottom-6 left-6 text-white">
-                    <Camera className="w-8 h-8 mb-3" />
-                    <h3 className="text-2xl font-bold mb-2">Wildlife</h3>
-                    <p className="text-sm opacity-90">Animals • Nature • Safari</p>
-                  </div>
-                </div>
-              </Link>
-            </motion.div>
-
-            
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true }}
+      className="text-center mb-16"
+    >
+      <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
+        Featured Work
+      </h2>
+      <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+        A curated selection of my best photography and cinematography work
+      </p>
+    </motion.div>
+    
+    <div className="flex flex-col items-center gap-16">
+      {/* Wildlife Card */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.1 }}
+        viewport={{ once: true }}
+        className="group cursor-pointer w-full max-w-4xl"
+      >
+        <Link href="/wildlife">
+          <div className="relative aspect-video overflow-hidden rounded-xl shadow-2xl">
+            <Image
+              src="/images/featured/wildlife.jpg"
+              alt="Wildlife Photography"
+              fill
+              className="object-cover group-hover:scale-110 transition-transform duration-700"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+            <div className="absolute bottom-8 left-8 text-white">
+              <Camera className="w-8 h-8 mb-3" />
+              <h3 className="text-3xl font-bold mb-2">Wildlife</h3>
+              <p className="text-base opacity-90">Animals • Nature • Safari</p>
+            </div>
           </div>
-           <div className="relative h-[85vh] overflow-hidden">
-          {/* Behind The Scenes Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              viewport={{ once: true }}
-              className="group cursor-pointer"
-            >
-              <Link href="/bts">
-                <div className="relative aspect-[4/5] overflow-hidden rounded-lg">
-                  <Image
-                    src="/images/featured/bts.jpg"
-                    alt="Behind The Scenes"
-                    fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-                  <div className="absolute bottom-6 left-6 text-white">
-                    <div className="w-8 h-8 mb-3 rounded-full bg-white/20 flex items-center justify-center">
-                      <div className="w-4 h-4 bg-white rounded-full" />
-                    </div>
-                    <h3 className="text-2xl font-bold mb-2">Behind The Scenes</h3>
-                    <p className="text-sm opacity-90">Process • Setup • Stories</p>
-                  </div>
-                </div>
-              </Link>
-            </motion.div>
-               
+        </Link>
+      </motion.div>
 
-            
-          </div>
-           <div className="relative h-[85vh] overflow-hidden">
-           {/* Travel Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="group cursor-pointer"
-            >
-              <Link href="/travel">
-                <div className="relative aspect-[4/5] overflow-hidden rounded-lg">
-                  <Image
-                    src="/images/photography/travel/travel1.jpg"
-                    alt="Travel Photography"
-                    fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-                  <div className="absolute bottom-6 left-6 text-white">
-                    <Video className="w-8 h-8 mb-3" />
-                    <h3 className="text-2xl font-bold mb-2">Travel</h3>
-                    <p className="text-sm opacity-90">Landscapes • Culture • Adventures</p>
-                  </div>
-                </div>
-              </Link>
-            </motion.div>
+      {/* Down Arrow */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        viewport={{ once: true }}
+        className="text-gray-400"
+      >
+        <ChevronDown className="w-10 h-10" />
+      </motion.div>
 
-            
-            
+      {/* Travel Card */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.3 }}
+        viewport={{ once: true }}
+        className="group cursor-pointer w-full max-w-4xl"
+      >
+        <Link href="/travel">
+          <div className="relative aspect-video overflow-hidden rounded-xl shadow-2xl">
+            <Image
+              src="/images/featured/travel.jpg"
+              alt="Travel Photography"
+              fill
+              className="object-cover group-hover:scale-110 transition-transform duration-700"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+            <div className="absolute bottom-8 left-8 text-white">
+              <Video className="w-8 h-8 mb-3" />
+              <h3 className="text-3xl font-bold mb-2">Travel</h3>
+              <p className="text-base opacity-90">Landscapes • Culture • Adventures</p>
+            </div>
           </div>
-        </div>
-      </section>
+        </Link>
+      </motion.div>
+
+      {/* Down Arrow */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.8, delay: 0.4 }}
+        viewport={{ once: true }}
+        className="text-gray-400"
+      >
+        <ChevronDown className="w-10 h-10" />
+      </motion.div>
+
+      {/* Behind The Scenes Card */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.5 }}
+        viewport={{ once: true }}
+        className="group cursor-pointer w-full max-w-4xl"
+      >
+        <Link href="/bts">
+          <div className="relative aspect-video overflow-hidden rounded-xl shadow-2xl">
+            <Image
+              src="/images/featured/bts.jpg"
+              alt="Behind The Scenes"
+              fill
+              className="object-cover group-hover:scale-110 transition-transform duration-700"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+            <div className="absolute bottom-8 left-8 text-white">
+              <div className="w-8 h-8 mb-3 rounded-full bg-white/20 flex items-center justify-center">
+                <div className="w-4 h-4 bg-white rounded-full" />
+              </div>
+              <h3 className="text-3xl font-bold mb-2">Behind The Scenes</h3>
+              <p className="text-base opacity-90">Process • Setup • Stories</p>
+            </div>
+          </div>
+        </Link>
+      </motion.div>
+    </div>
+  </div>
+</section>
 
       {/* Contact CTA Section */}
       <section className="py-20 bg-gray-900 text-white">
