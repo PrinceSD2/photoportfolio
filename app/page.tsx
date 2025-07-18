@@ -221,15 +221,19 @@ export default function HomePage() {
         transition={{ duration: 0.8, delay: 0.1 }}
         viewport={{ once: true }}
         className="group cursor-pointer w-full max-w-[1950px] max-h-auto"
+        // style={{ marginLeft: 'calc(50% - 50vw)', marginRight: 'calc(50% - 50vw)' }}
       >
         <Link href="/wildlife">
           <div className="relative aspect-video overflow-hidden rounded-xl shadow-2xl">
-        <Image
-          src="/images/hero/hero4.jpg"
-          alt="Wildlife Photography"
-          fill
-          className="object-cover group-hover:scale-110 transition-transform duration-700"
-        />
+            <video
+              src="/images/hero/wildlife.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="object-cover w-full h-full absolute inset-0 group-hover:scale-110 transition-transform duration-700"
+              poster="/images/hero/hero4.jpg"
+            />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
         <div className="absolute bottom-8 left-8 text-white">
           <Camera className="w-8 h-8 mb-3" />
@@ -251,12 +255,15 @@ export default function HomePage() {
         className="group cursor-pointer w-full max-w-[1950px] max-h-auto"
       >
         <Link href="/travel">
-          <div className="relative aspect-video overflow-hidden rounded-xl shadow-2xl">
-            <Image
-              src="/images/hero/hero4.jpg"
-              alt="Travel Photography"
-              fill
-              className="object-cover group-hover:scale-110 transition-transform duration-700"
+            <div className="relative aspect-video overflow-hidden rounded-xl shadow-2xl">
+            <video
+              src="/images/hero/travel.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="object-cover w-full h-full absolute inset-0 group-hover:scale-110 transition-transform duration-700"
+              poster="/images/hero/hero4.jpg"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
             <div className="absolute bottom-8 left-8 text-white">
@@ -264,7 +271,7 @@ export default function HomePage() {
               <h3 className="text-3xl font-bold mb-2">Travel</h3>
               <p className="text-base opacity-90">Landscapes • Culture • Adventures</p>
             </div>
-          </div>
+            </div>
         </Link>
       </motion.div>
 
@@ -279,11 +286,14 @@ export default function HomePage() {
       >
         <Link href="/bts">
           <div className="relative aspect-video overflow-hidden rounded-xl shadow-2xl">
-            <Image
-              src="/images/hero/hero4.jpg"
-              alt="Behind The Scenes"
-              fill
-              className="object-cover group-hover:scale-110 transition-transform duration-700"
+            <video
+              src="/images/hero/Behind The Scenes.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="object-cover w-full h-full absolute inset-0 group-hover:scale-110 transition-transform duration-700"
+              poster="/images/hero/hero4.jpg"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
             <div className="absolute bottom-8 left-8 text-white">

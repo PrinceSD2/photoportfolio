@@ -6,42 +6,47 @@ import Head from "next/head";
 
 const travelImages = [
   {
-    src: "/images/photography/travel/travel1.jpg",
+    src: "/images/hero/travel1.webp",
     alt: "Sunrise over mountain range in the Himalayas",
     location: "Himalayas, India",
   },
   {
-    src: "/images/photography/travel/travel2.jpg",
+    src: "/images/hero/travel1.webp",
     alt: "Colorful street in Lisbon, Portugal",
     location: "Lisbon, Portugal",
   },
   {
-    src: "/images/photography/travel/travel3.jpg",
+    src: "/images/hero/travel1.webp",
     alt: "Palm trees on a tropical beach in Bali",
     location: "Bali, Indonesia",
   },
   {
-    src: "/images/photography/travel/travel4.jpg",
+    src: "/images/hero/travel1.webp",
     alt: "Night view of Tokyo cityscape",
     location: "Tokyo, Japan",
   },
   {
-    src: "/images/photography/travel/travel5.jpg",
+    src: "/images/hero/travel1.webp",
     alt: "Snowy forest in Norway",
     location: "Tromsø, Norway",
   },
   {
-    src: "/images/photography/travel/travel6.jpg",
+    src: "/images/hero/travel1.webp",
     alt: "Traditional boat on Lake Bled",
     location: "Lake Bled, Slovenia",
   },
   {
-    src: "/images/photography/travel/travel7.jpg",
+    src: "/images/hero/travel1.webp",
     alt: "Desert dunes under sunset sky",
     location: "Sahara Desert, Morocco",
   },
   {
-    src: "/images/photography/travel/travel8.jpg",
+    src: "/images/hero/travel1.webp",
+    alt: "Historic architecture in Prague",
+    location: "Prague, Czech Republic",
+  },
+  {
+    src: "/images/hero/travel1.webp",
     alt: "Historic architecture in Prague",
     location: "Prague, Czech Republic",
   },

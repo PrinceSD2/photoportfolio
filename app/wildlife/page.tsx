@@ -6,37 +6,47 @@ import Head from "next/head";
 
 const wildlifeImages = [
   {
-    src: "/images/photography/wildlife/thumb.jpg",
+    src: "/images/hero/hero2.jpg",
     alt: "Close-up portrait of a Bengal tiger in its natural habitat",
     caption: "Bengal Tiger – India",
   },
   {
-    src: "/images/photography/wildlife/travel1.jpg",
+    src: "/images/hero/hero2.jpg",
     alt: "Elephant family walking across the savannah during golden hour",
     caption: "Elephants – Kenya",
   },
   {
-    src: "/images/photography/wildlife/travel2.jpg",
+    src: "/images/hero/hero2.jpg",
     alt: "Colorful toucan perched on a branch in the rainforest",
     caption: "Toucan – Costa Rica",
   },
   {
-    src: "/images/photography/wildlife/travel3.jpg",
+    src: "/images/hero/hero2.jpg",
     alt: "A lion resting under the shade in Serengeti National Park",
     caption: "Lion – Tanzania",
   },
   {
-    src: "/images/photography/wildlife/food1.jpg",
+    src: "/images/hero/hero2.jpg",
     alt: "Snow leopard caught mid-leap in the Himalayas",
     caption: "Snow Leopard – Himalayas",
   },
   {
-    src: "/images/photography/wildlife/food2.jpg",
+    src: "/images/hero/hero2.jpg",
     alt: "A family of deer grazing in the dense forest",
     caption: "Deer – Canada",
   },
   {
-    src: "/images/photography/wildlife/food3.jpg",
+    src: "/images/hero/hero2.jpg",
+    alt: "Flamingos standing in a lake at sunset",
+    caption: "Flamingos – Chile",
+  },
+  {
+    src: "/images/hero/hero2.jpg",
+    alt: "A family of deer grazing in the dense forest",
+    caption: "Deer – Canada",
+  },
+  {
+    src: "/images/hero/hero2.jpg",
     alt: "Flamingos standing in a lake at sunset",
     caption: "Flamingos – Chile",
   },
