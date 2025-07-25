@@ -23,6 +23,7 @@ const categoryData: Record<string, {
     name: 'Model Photography',
     description: 'Capturing the essence of beauty, personality, and style through intimate and fashion portraits.',
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     images: Array.from({ length: 12 }, (_, i) => `/images/photography/model/model-${i + 1}.jpg`)
   },
   food: {
@@ -35,6 +36,8 @@ const categoryData: Record<string, {
     description: 'Documenting adventures and capturing the soul of places around the world.',
     images: Array.from({ length: 15 }, (_, i) => `/images/photography/travel/travel-${i + 1}.jpg`)
 =======
+=======
+>>>>>>> Stashed changes
     images: [
       '/images/photography/model/model1.jpg',
       '/images/photography/model/model2.jpg',
@@ -50,6 +53,9 @@ const categoryData: Record<string, {
       '/images/photography/model/model12.jpg',
       '/images/photography/model/model13.jpg'
     ]
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   },
  'product-food': {
@@ -103,6 +109,7 @@ const categoryData: Record<string, {
     name: 'Hotel Photography',
     description: 'Showcasing hospitality spaces with architectural precision and inviting atmosphere.',
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     images: Array.from({ length: 10 }, (_, i) => `/images/photography/hotel/hotel-${i + 1}.jpg`)
   },
   product: {
@@ -110,6 +117,23 @@ const categoryData: Record<string, {
     description: 'Commercial photography that highlights features and creates desire for products.',
     images: Array.from({ length: 14 }, (_, i) => `/images/photography/product/product-${i + 1}.jpg`)
   }
+=======
+    images: [
+      '/images/photography/hotel/hotel1.jpg',
+      '/images/photography/hotel/hotel2.jpg',
+      '/images/photography/hotel/hotel3.jpg',
+      '/images/photography/hotel/hotel4.jpg',
+      '/images/photography/hotel/hotel5.jpg',
+      '/images/photography/hotel/hotel6.jpg',
+      '/images/photography/hotel/hotel7.jpg',
+      '/images/photography/hotel/hotel8.jpg',
+      '/images/photography/hotel/hotel9.jpg',
+      '/images/photography/hotel/hotel10.jpg',
+      // Add your new images below
+      '/images/photography/hotel/hotel11.jpg'
+    ]
+  },
+>>>>>>> Stashed changes
 =======
     images: [
       '/images/photography/hotel/hotel1.jpg',
