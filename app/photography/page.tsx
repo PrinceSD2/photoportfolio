@@ -8,6 +8,45 @@ import { useRef, useEffect, useState } from 'react'
 
 const categories = [
   {
+    name: 'Product',
+    slug: 'product',
+    description: 'Commercial photography that makes products shine',
+    images: [
+    '/images/photography/product/product1.jpg',
+    '/images/photography/product/product2.jpg',
+    '/images/photography/product/product3.jpg',
+    '/images/photography/product/product4.jpg',
+    '/images/photography/product/product5.jpg',
+    '/images/photography/product/product6.jpg',
+    '/images/photography/product/h1.jpg',
+    '/images/photography/product/h2.jpg',
+    '/images/photography/product/H3.jpg',
+    '/images/photography/product/h3.jpg',
+    '/images/photography/product/h9.jpg',
+    '/images/photography/product/H4.jpg',
+    '/images/photography/product/H5.jpg',
+    '/images/photography/product/H6.jpg',
+    '/images/photography/product/H7.jpg',
+    '/images/photography/product/H8.jpg',
+    '/images/photography/product/thumb (2).JPG',
+    '/images/photography/product/thumb.jpg'
+    ],
+    count: 19,
+  },
+  {
+  name: 'Food',
+  slug: 'food',
+  description: 'From irresistible dishes to polished products — a showcase of culinary and commercial excellence.',
+  images: [
+   ,
+    '/images/photography/product/b1.jpg',
+    '/images/photography/product/b2.jpg',
+    '/images/photography/product/b3.jpg',
+    '/images/photography/product/b4.jpg',
+  ],
+  count: 22,
+},
+{
     name: 'Model',
     slug: 'model',
     description: 'Portrait and fashion photography showcasing beauty and personality',
@@ -15,18 +54,18 @@ const categories = [
     count: 1,
   },
   {
-    name: 'Food',
-    slug: 'food',
-    description: 'Culinary artistry captured in delicious detail',
-    images: Array(6).fill('/images/photography/food/thumb.jpg'),
-    count: 1,
-  },
-  {
-    name: 'Travel',
-    slug: 'travel',
-    description: 'Adventures and landscapes from around the world',
-    images: Array(6).fill('/images/photography/travel/thumb.jpg'),
-    count: 1,
+    name: 'Interior',
+    slug: 'Interior',
+    description: 'Architectural and interior photography for offices',
+    images: [
+      '/images/photography/hotel/1.jpg',
+      '/images/photography/hotel/2.jpg',
+      '/images/photography/hotel/3.jpg',
+      '/images/photography/hotel/4.jpg',
+      '/images/photography/hotel/5.jpg',
+      '/images/photography/hotel/6.jpg',
+    ],
+    count: 6,
   },
   {
     name: 'Hotel',
@@ -35,13 +74,7 @@ const categories = [
     images: Array(6).fill('/images/photography/hotel/thumb.jpg'),
     count: 1,
   },
-  {
-    name: 'Product',
-    slug: 'product',
-    description: 'Commercial photography that makes products shine',
-    images: Array(6).fill('/images/photography/product/thumb.jpg'),
-    count: 1,
-  },
+  
 ]
 
 const PhotographyPage = () => {

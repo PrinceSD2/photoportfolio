@@ -19,31 +19,87 @@ const categoryData: Record<string, {
   description: string
   images: string[]
 }> = {
-  model: {
+  
+  'product-food': {
+  name: 'Product & Food Photography',
+  description: 'Making dishes irresistible and products desirable through refined photography.',
+  images: [
+    '/images/photography/product/product1.jpg',
+    '/images/photography/product/product2.jpg',
+    '/images/photography/product/product3.jpg',
+    '/images/photography/product/product4.jpg',
+    '/images/photography/product/product5.jpg',
+    '/images/photography/product/product6.jpg',
+    '/images/photography/product/h1.jpg',
+    '/images/photography/product/h2.jpg',
+    '/images/photography/product/H3.jpg',
+    '/images/photography/product/h3.jpg',
+    '/images/photography/product/h9.jpg',
+    '/images/photography/product/H4.jpg',
+    '/images/photography/product/H5.jpg',
+    '/images/photography/product/H6.jpg',
+    '/images/photography/product/H7.jpg',
+    '/images/photography/product/H8.jpg',
+    '/images/photography/product/thumb (2).JPG',
+    '/images/photography/product/thumb.jpg',
+    '/images/photography/product/b1.jpg',
+    '/images/photography/product/b2.jpg',
+    '/images/photography/product/b3.jpg',
+    '/images/photography/product/b4.jpg',
+  ],
+},
+ model: {
     name: 'Model Photography',
     description: 'Capturing the essence of beauty, personality, and style through intimate and fashion portraits.',
-    images: Array.from({ length: 10 }, (_, i) => `/images/photography/model/model${i + 1}.jpg`)
-  },
-  food: {
-    name: 'Food Photography',
-    description: 'Making culinary creations irresistible through artistic composition and lighting.',
-    images: Array.from({ length: 10 }, (_, i) => `/images/photography/food/food${i + 1}.jpg`)
-  },
-  travel: {
-    name: 'Travel Photography',
-    description: 'Documenting adventures and capturing the soul of places around the world.',
-    images: Array.from({ length: 10 }, (_, i) => `/images/photography/travel/travel${i + 1}.jpg`)
+    images: [
+    '/images/photography/model/model1.jpg',
+      '/images/photography/model/model2.jpg',
+      '/images/photography/model/model3.jpg',
+      '/images/photography/model/model4.jpg',
+      '/images/photography/model/model5.jpg',
+      '/images/photography/model/model6.jpg',
+      '/images/photography/model/model7.jpg',
+      '/images/photography/model/model8.jpg',
+      '/images/photography/model/model9.jpg',
+      '/images/photography/model/model10.jpg',
+      '/images/photography/model/model11.jpg',
+      '/images/photography/model/model12.jpg',
+      '/images/photography/model/model13.jpg'
+  ],
   },
   hotel: {
     name: 'Hotel Photography',
     description: 'Showcasing hospitality spaces with architectural precision and inviting atmosphere.',
-    images: Array.from({ length: 10 }, (_, i) => `/images/photography/hotel/hotel${i + 1}.jpg`)
-  },
-  product: {
-    name: 'Product Photography',
-    description: 'Commercial photography that highlights features and creates desire for products.',
-    images: Array.from({ length: 10 }, (_, i) => `/images/photography/product/product${i + 1}.jpg`)
-  }
+    images: [
+    '/images/photography/hotel/hotel1.jpg',
+      '/images/photography/hotel/hotel2.jpg',
+      '/images/photography/hotel/hotel3.jpg',
+      '/images/photography/hotel/hotel4.jpg',
+      '/images/photography/hotel/hotel5.jpg',
+      '/images/photography/hotel/hotel6.jpg',
+      '/images/photography/hotel/hotel7.jpg',
+      '/images/photography/hotel/hotel8.jpg',
+      '/images/photography/hotel/hotel9.jpg',
+      '/images/photography/hotel/hotel10.jpg',
+    
+  ],
+},
+  interior: {
+    name: 'Interior ',
+    description: 'Capturing the beauty and functionality of interior spaces of office.',
+    images: [
+      '/images/photography/interior/interior1.jpg',
+      '/images/photography/interior/interior2.jpg',
+      '/images/photography/interior/interior3.jpg',
+      '/images/photography/interior/interior4.jpg',
+      '/images/photography/interior/interior5.jpg',
+      '/images/photography/interior/interior6.jpg',
+      '/images/photography/interior/interior7.jpg',
+      '/images/photography/interior/interior8.jpg',
+      '/images/photography/interior/interior9.jpg',
+      '/images/photography/interior/interior10.jpg',
+    ]
+},
 }
 
 export default function CategoryPage({ params }: CategoryPageProps) {
