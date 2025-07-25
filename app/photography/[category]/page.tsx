@@ -22,6 +22,7 @@ const categoryData: Record<string, {
   model: {
     name: 'Model Photography',
     description: 'Capturing the essence of beauty, personality, and style through intimate and fashion portraits.',
+<<<<<<< Updated upstream
     images: Array.from({ length: 12 }, (_, i) => `/images/photography/model/model-${i + 1}.jpg`)
   },
   food: {
@@ -33,10 +34,75 @@ const categoryData: Record<string, {
     name: 'Travel Photography',
     description: 'Documenting adventures and capturing the soul of places around the world.',
     images: Array.from({ length: 15 }, (_, i) => `/images/photography/travel/travel-${i + 1}.jpg`)
+=======
+    images: [
+      '/images/photography/model/model1.jpg',
+      '/images/photography/model/model2.jpg',
+      '/images/photography/model/model3.jpg',
+      '/images/photography/model/model4.jpg',
+      '/images/photography/model/model5.jpg',
+      '/images/photography/model/model6.jpg',
+      '/images/photography/model/model7.jpg',
+      '/images/photography/model/model8.jpg',
+      '/images/photography/model/model9.jpg',
+      '/images/photography/model/model10.jpg',
+      '/images/photography/model/model11.jpg',
+      '/images/photography/model/model12.jpg',
+      '/images/photography/model/model13.jpg'
+    ]
+>>>>>>> Stashed changes
   },
+ 'product-food': {
+  name: 'Product & Food Photography',
+  description: 'Making dishes irresistible and products desirable through refined photography.',
+  images: [
+    '/images/photography/product/product1.jpg',
+    '/images/photography/product/product2.jpg',
+    '/images/photography/product/product3.jpg',
+    '/images/photography/product/product4.jpg',
+    '/images/photography/product/product5.jpg',
+    '/images/photography/product/product6.jpg',
+    '/images/photography/product/h1.jpg',
+    '/images/photography/product/h2.jpg',
+    '/images/photography/product/H3.jpg',
+    '/images/photography/product/h3.jpg',
+    '/images/photography/product/h9.jpg',
+    '/images/photography/product/H4.jpg',
+    '/images/photography/product/H5.jpg',
+    '/images/photography/product/H6.jpg',
+    '/images/photography/product/H7.jpg',
+    '/images/photography/product/H8.jpg',
+    '/images/photography/product/thumb (2).JPG',
+    '/images/photography/product/thumb.jpg',
+    '/images/photography/product/b1.jpg',
+    '/images/photography/product/b2.jpg',
+    '/images/photography/product/b3.jpg',
+    '/images/photography/product/b4.jpg',
+  ],
+},
+  // travel: {
+  //   name: 'Travel Photography',
+  //   description: 'Documenting adventures and capturing the soul of places around the world.',
+  //   images: [
+  //     '/images/photography/travel/travel1.jpg',
+  //     '/images/photography/travel/travel2.jpg',
+  //     '/images/photography/travel/travel3.jpg',
+  //     '/images/photography/travel/travel4.jpg',
+  //     '/images/photography/travel/travel5.jpg',
+  //     '/images/photography/travel/travel6.jpg',
+  //     '/images/photography/travel/travel7.jpg',
+  //     '/images/photography/travel/travel8.jpg',
+  //     '/images/photography/travel/travel9.jpg',
+  //     '/images/photography/travel/travel10.jpg',
+  //     // Add your new images below
+  //     '/images/photography/travel/travel11.jpg',
+  //     '/images/photography/travel/travel12.jpg'
+  //   ]
+  // },
   hotel: {
     name: 'Hotel Photography',
     description: 'Showcasing hospitality spaces with architectural precision and inviting atmosphere.',
+<<<<<<< Updated upstream
     images: Array.from({ length: 10 }, (_, i) => `/images/photography/hotel/hotel-${i + 1}.jpg`)
   },
   product: {
@@ -44,6 +110,23 @@ const categoryData: Record<string, {
     description: 'Commercial photography that highlights features and creates desire for products.',
     images: Array.from({ length: 14 }, (_, i) => `/images/photography/product/product-${i + 1}.jpg`)
   }
+=======
+    images: [
+      '/images/photography/hotel/hotel1.jpg',
+      '/images/photography/hotel/hotel2.jpg',
+      '/images/photography/hotel/hotel3.jpg',
+      '/images/photography/hotel/hotel4.jpg',
+      '/images/photography/hotel/hotel5.jpg',
+      '/images/photography/hotel/hotel6.jpg',
+      '/images/photography/hotel/hotel7.jpg',
+      '/images/photography/hotel/hotel8.jpg',
+      '/images/photography/hotel/hotel9.jpg',
+      '/images/photography/hotel/hotel10.jpg',
+      // Add your new images below
+      '/images/photography/hotel/hotel11.jpg'
+    ]
+  },
+>>>>>>> Stashed changes
 }
 
 export default function CategoryPage({ params }: CategoryPageProps) {

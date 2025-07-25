@@ -80,7 +80,7 @@ export default function AboutPage() {
             >
               <div className="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl">
                 <Image
-                  src="/profile.jpg"
+                  src="/images/hero/IMG_20250721_133004.jpg"
                   alt="Mohit Yadav"
                   fill
                   className="object-cover"

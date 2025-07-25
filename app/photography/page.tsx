@@ -6,7 +6,9 @@ import Link from 'next/link'
 import { Camera, ArrowRight } from 'lucide-react'
 
 const categories = [
+  
   {
+<<<<<<< Updated upstream
     name: 'Model',
     slug: 'model',
     description: 'Portrait and fashion photography showcasing beauty and personality',
@@ -40,7 +42,101 @@ const categories = [
     description: 'Commercial photography that makes products shine',
     image: '/images/photography/product/thumb.jpg',
     count: 14,
+=======
+  name: 'Product & Food',
+  slug: 'product-food',
+  description: 'From irresistible dishes to polished products — a showcase of culinary and commercial excellence.',
+  images: [
+    '/images/photography/product/product1.jpg',
+    '/images/photography/product/product2.jpg',
+    '/images/photography/product/product3.jpg',
+    '/images/photography/product/product4.jpg',
+    '/images/photography/product/product5.jpg',
+    '/images/photography/product/product6.jpg',
+    '/images/photography/product/h1.jpg',
+    '/images/photography/product/h2.jpg',
+    '/images/photography/product/H3.jpg',
+    '/images/photography/product/h3.jpg',
+    '/images/photography/product/h9.jpg',
+    '/images/photography/product/H4.jpg',
+    '/images/photography/product/H5.jpg',
+    '/images/photography/product/H6.jpg',
+    '/images/photography/product/H7.jpg',
+    '/images/photography/product/H8.jpg',
+    '/images/photography/product/thumb (2).JPG',
+    '/images/photography/product/thumb.jpg',
+    '/images/photography/product/b1.jpg',
+    '/images/photography/product/b2.jpg',
+    '/images/photography/product/b3.jpg',
+    '/images/photography/product/b4.jpg',
+  ],
+  count: 22,
+},
+{
+    name: 'Hotel',
+    slug: 'hotel',
+    description: 'Architectural and interior photography for hospitality',
+    images: [
+      '/images/photography/hotel/1.jpg',
+      '/images/photography/hotel/2.jpg',
+      '/images/photography/hotel/3.jpg',
+      '/images/photography/hotel/4.jpg',
+      '/images/photography/hotel/5.jpg',
+      '/images/photography/hotel/6.jpg',
+    ],
+    count: 6,
   },
+  {
+    name: 'Interior',
+    slug: 'Interior',
+    description: 'Architectural and interior photography for offices',
+    images: [
+      '/images/photography/hotel/1.jpg',
+      '/images/photography/hotel/2.jpg',
+      '/images/photography/hotel/3.jpg',
+      '/images/photography/hotel/4.jpg',
+      '/images/photography/hotel/5.jpg',
+      '/images/photography/hotel/6.jpg',
+    ],
+    count: 6,
+>>>>>>> Stashed changes
+  },
+{
+    name: 'Model',
+    slug: 'model',
+    description: 'Portrait and fashion photography showcasing beauty and personality',
+    images: [
+      '/images/photography/model/model1.jpg',
+      '/images/photography/model/model2.jpg',
+      '/images/photography/model/model3.jpg',
+      '/images/photography/model/model4.jpg',
+      '/images/photography/model/model5.jpg',
+      '/images/photography/model/model6.jpg',
+      '/images/photography/model/model7.jpg',
+      '/images/photography/model/model8.jpg',
+      '/images/photography/model/model9.jpg',
+      '/images/photography/model/model10.jpg',
+      '/images/photography/model/model11.jpg',
+      '/images/photography/model/model12.jpg',
+      '/images/photography/model/model13.jpg'
+    ],
+    count: 6,
+  },
+  // {
+  //   name: 'Travel',
+  //   slug: 'travel',
+  //   description: 'Adventures and landscapes from around the world',
+  //   images: [
+  //     '/images/photography/travel/1.jpg',
+  //     '/images/photography/travel/2.jpg',
+  //     '/images/photography/travel/3.jpg',
+  //     '/images/photography/travel/4.jpg',
+  //     '/images/photography/travel/5.jpg',
+  //     '/images/photography/travel/6.jpg',
+  //   ],
+  //   count: 6,
+  // },
+  
 ]
 
 export default function PhotographyPage() {
