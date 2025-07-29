@@ -1,314 +1,381 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import Image from 'next/image'
+import { useRef, useEffect, useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
-import { Play, Video, ExternalLink } from 'lucide-react'
+import { Video, Play, X } from 'lucide-react'
 
-const videos = [
-  {
-    id: 1,
-    title: 'Wedding Highlights - Rohan & Priya',
-    category: 'Wedding',
-    duration: '3:45',
-    thumbnail: '/images/videos/wedding-1.jpg',
-    videoUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-    description: 'A beautiful celebration of love captured in the hills of Shimla',
-  },
-  {
-    id: 2,
-    title: 'Corporate Brand Film - Tech Solutions',
-    category: 'Corporate',
-    duration: '2:30',
-    thumbnail: '/images/videos/corporate-1.jpg',
-    videoUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-    description: 'Dynamic corporate video showcasing innovation and technology',
-  },
-  {
-    id: 3,
-    title: 'Product Launch - Fashion Collection',
-    category: 'Promo',
-    duration: '1:20',
-    thumbnail: '/images/videos/promo-1.jpg',
-    videoUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-    description: 'Stylish promotional video for a new fashion line',
-  },
-  {
-    id: 4,
-    title: 'Destination Wedding - Goa',
-    category: 'Wedding',
-    duration: '4:15',
-    thumbnail: '/images/videos/wedding-2.jpg',
-    videoUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-    description: 'Beach wedding celebration with stunning ocean views',
-  },
-  {
-    id: 5,
-    title: 'Hotel Showcase - Luxury Resort',
-    category: 'Corporate',
-    duration: '2:45',
-    thumbnail: '/images/videos/corporate-2.jpg',
-    videoUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-    description: 'Elegant presentation of premium hospitality services',
-  },
-  {
-    id: 6,
-    title: 'Music Video - Indie Artist',
-    category: 'Promo',
-    duration: '3:20',
-    thumbnail: '/images/videos/promo-2.jpg',
-    videoUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-    description: 'Creative music video with artistic cinematography',
-  },
-]
+// Custom hook for autoplay on scroll
+function useAutoplayOnScroll(ref: React.RefObject<HTMLVideoElement>) {
+  useEffect(() => {
+    const video = ref.current
+    if (!video) return
 
-const categories = ['All', 'Wedding', 'Corporate', 'Promo']
+    const handlePlay = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          video.play()
+        } else {
+          video.pause()
+        }
+      })
+    }
+
+    const observer = new window.IntersectionObserver(handlePlay, {
+      threshold: 0.5,
+    })
+    observer.observe(video)
+
+    return () => observer.disconnect()
+  }, [ref])
+}
 
 export default function VideographyPage() {
+  // Refs for videos
+  const featuredVideoRef = useRef<HTMLVideoElement>(null)
+  const otherVideo1Ref = useRef<HTMLVideoElement>(null)
+  const otherVideo2Ref = useRef<HTMLVideoElement>(null)
+
+  useAutoplayOnScroll(featuredVideoRef)
+  useAutoplayOnScroll(otherVideo1Ref)
+  useAutoplayOnScroll(otherVideo2Ref)
+
+  // Hover states for overlays
+  const [hoveredFeatured, setHoveredFeatured] = useState(false)
+  const [hoveredOther1, setHoveredOther1] = useState(false)
+  const [hoveredOther2, setHoveredOther2] = useState(false)
+
+  // Modal states
+  const [modalVideo, setModalVideo] = useState<null | 'featured' | 'wildlife' | 'bts'>(null)
+  const modalVideoSrc = {
+    featured: "/images/hero/tigerrrr.mp4",
+    wildlife: "/images/hero/wildlife.mp4",
+    bts: "/images/hero/Behind The Scenes.mp4"
+  }
+  const modalPoster = {
+    featured: "/images/videos/featured-thumb.jpg",
+    wildlife: "/images/videos/wedding-1.jpg",
+    bts: "/images/videos/corporate-1.jpg"
+  }
+
+  // Close modal when video ends
+  const handleVideoEnd = () => setModalVideo(null)
+
   return (
-    <div className="min-h-screen pt-16">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 pt-16">
       {/* Hero Section */}
-      <section className="relative h-[60vh] overflow-hidden">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover"
+      <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
+        <motion.div
+          initial={{ scale: 1.1, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 1.2, ease: 'easeOut' }}
+          className="absolute inset-0 w-full h-full"
         >
-          <source src="/videos/videography-hero.mp4" type="video/mp4" />
-        </video>
-        <div className="absolute inset-0 bg-black/50" />
-        <div className="relative z-10 flex items-center justify-center h-full text-center text-white">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
-            className="max-w-4xl mx-auto px-4"
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-full object-cover brightness-90"
           >
-            <Video className="w-16 h-16 mx-auto mb-6" />
-            <h1 className="text-5xl md:text-7xl font-bold mb-6">Videography</h1>
-            <p className="text-xl md:text-2xl font-light max-w-2xl mx-auto">
-              Bringing stories to life through motion, emotion, and cinematic excellence.
-            </p>
+            <source src="/images/hero/TIGER (insta).mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-transparent to-black/60" />
+        </motion.div>
+        <div className="relative z-10 text-center text-white px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.1, delay: 0.3 }}
+            className="max-w-3xl mx-auto"
+          >
+            <motion.div
+              initial={{ rotate: -10, scale: 0.7, opacity: 0 }}
+              animate={{ rotate: 0, scale: 1, opacity: 1 }}
+              transition={{ duration: 1, delay: 0.7 }}
+              className="flex justify-center"
+            >
+              <Video className="w-20 h-20 mx-auto mb-6 text-blue-400 drop-shadow-lg animate-bounce" />
+            </motion.div>
+            <motion.h1
+              initial={{ letterSpacing: '0.5em', opacity: 0 }}
+              animate={{ letterSpacing: 'normal', opacity: 1 }}
+              transition={{ duration: 1.2, delay: 0.8 }}
+              className="text-6xl md:text-7xl font-extrabold mb-4 drop-shadow-xl"
+            >
+              Videography
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 1.2 }}
+              className="text-2xl md:text-3xl font-light mb-2 drop-shadow"
+            >
+              Cinematic storytelling for brands, couples, and creators.
+            </motion.p>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 1.4 }}
+              className="text-lg text-blue-200 drop-shadow"
+            >
+              Professional films that inspire, engage, and move your audience.
+            </motion.p>
           </motion.div>
         </div>
       </section>
 
-      {/* Video Grid */}
-      <section className="py-20 bg-white dark:bg-gray-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Featured Video */}
+      <section className="py-20 bg-gradient-to-r from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+        <div className="max-w-5xl mx-auto px-4">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
+            initial={{ opacity: 0, scale: 0.95, y: 40 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 1, ease: 'easeOut' }}
+            viewport={{ once: true }}
+            className="rounded-3xl overflow-hidden shadow-2xl relative group border-4 border-blue-200 dark:border-blue-900"
+            onMouseEnter={() => setHoveredFeatured(true)}
+            onMouseLeave={() => setHoveredFeatured(false)}
+            onClick={() => setModalVideo('featured')}
+            style={{ cursor: 'pointer' }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
-              Video Portfolio
-            </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              From intimate weddings to dynamic corporate stories, each video is crafted with passion and precision.
-            </p>
-          </motion.div>
-
-          {/* Category Filter */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex justify-center mb-12"
-          >
-            <div className="flex bg-gray-100 dark:bg-gray-800 rounded-full p-1">
-              {categories.map((category) => (
-                <button
-                  key={category}
-                  className="px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:bg-white hover:shadow-md dark:hover:bg-gray-700"
+            <div className="relative w-full aspect-video">
+              <motion.video
+                ref={featuredVideoRef}
+                src="/images/hero/tigerrrr.mp4"
+                controls
+                muted
+                className={`w-full h-full object-cover rounded-3xl transition-transform duration-500 ${hoveredFeatured ? 'scale-105 brightness-110' : ''}`}
+                poster="/images/videos/featured-thumb.jpg"
+                initial={{ opacity: 0, scale: 1.05 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1.2, ease: 'easeOut' }}
+              />
+              {/* Overlay on hover */}
+              {hoveredFeatured && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 0.9 }}
+                  exit={{ opacity: 0 }}
+                  className="absolute inset-0 bg-gradient-to-br from-blue-700/80 via-purple-700/70 to-blue-900/80 flex items-center justify-center"
                 >
-                  {category}
-                </button>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Videos Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {videos.map((video, index) => (
+                  <Play className="w-16 h-16 text-white animate-pulse" />
+                </motion.div>
+              )}
               <motion.div
-                key={video.id}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
-                className="group cursor-pointer"
+                initial={{ opacity: 0, y: -20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.3 }}
+                className="absolute top-4 left-4 bg-blue-600 text-white px-4 py-1 rounded-full text-xs font-semibold shadow-lg"
               >
-                <div className="relative aspect-video overflow-hidden rounded-lg mb-4 bg-gray-900">
-                  <Image
-                    src={video.thumbnail}
-                    alt={video.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-700"
-                  />
-                  
-                  {/* Play Button Overlay */}
-                  <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-all duration-300">
-                    <div className="bg-white/90 p-4 rounded-full group-hover:scale-110 transition-transform duration-300">
-                      <Play className="w-8 h-8 text-gray-900 ml-1" />
-                    </div>
-                  </div>
-                  
-                  {/* Duration Badge */}
-                  <div className="absolute top-4 right-4 bg-black/70 text-white px-2 py-1 rounded text-sm">
-                    {video.duration}
-                  </div>
-                  
-                  {/* Category Badge */}
-                  <div className="absolute top-4 left-4 bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-medium">
-                    {video.category}
-                  </div>
-                </div>
-                
-                <div className="space-y-2">
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white group-hover:text-blue-600 transition-colors">
-                    {video.title}
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm">
-                    {video.description}
-                  </p>
-                  <a
-                    href={video.videoUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 text-sm font-medium"
-                  >
-                    Watch on YouTube
-                    <ExternalLink className="w-4 h-4" />
-                  </a>
-                </div>
+                Featured
               </motion.div>
-            ))}
-          </div>
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.5 }}
+                className="absolute top-4 right-4 bg-black/70 text-white px-3 py-1 rounded text-sm"
+              >
+                5:00
+              </motion.div>
+            </div>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.2 }}
+              className="p-8 bg-white dark:bg-gray-900"
+            >
+              <h2 className="text-3xl md:text-4xl font-bold mb-2 text-blue-900 dark:text-blue-200 group-hover:text-purple-700 transition-colors duration-300">Featured Film: The Journey</h2>
+              <p className="text-gray-700 dark:text-gray-300 mb-4 text-lg">
+                A cinematic story that captures the essence of adventure and emotion.
+              </p>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Video Production Services */}
-      <section className="py-20 bg-gray-50 dark:bg-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Other Videos */}
+      <section className="py-16 bg-gradient-to-r from-blue-100 via-white to-purple-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+        <div className="max-w-6xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-12"
           >
-            <h2 className="text-4xl font-bold mb-6 text-gray-900 dark:text-white">
-              Video Production Services
+            <h2 className="text-4xl md:text-5xl font-extrabold mb-4 text-blue-900 dark:text-blue-200 tracking-tight">
+              More Creations
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Professional videography services tailored to your unique needs and vision.
+            <p className="text-lg text-blue-700 dark:text-blue-300 max-w-2xl mx-auto">
+              Explore our portfolio of creative videos.
             </p>
           </motion.div>
-
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 gap-12">
+            {/* Video 1 */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1 }}
+              initial={{ opacity: 0, scale: 0.95, y: 30 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 1, ease: 'easeOut' }}
               viewport={{ once: true }}
-              className="bg-white dark:bg-gray-900 rounded-lg p-8 shadow-lg text-center"
+              className="group rounded-3xl overflow-hidden shadow-xl bg-white dark:bg-gray-900 border-4 border-pink-200 dark:border-pink-900 relative"
+              onMouseEnter={() => setHoveredOther1(true)}
+              onMouseLeave={() => setHoveredOther1(false)}
+              onClick={() => setModalVideo('wildlife')}
+              style={{ cursor: 'pointer' }}
             >
-              <div className="w-16 h-16 bg-pink-100 dark:bg-pink-900/30 rounded-lg flex items-center justify-center mx-auto mb-6">
-                <div className="w-8 h-8 bg-pink-600 rounded-full flex items-center justify-center">
-                  <Play className="w-4 h-4 text-white ml-0.5" />
-                </div>
+              <div className="relative w-full aspect-video">
+                <motion.video
+                  ref={otherVideo1Ref}
+                  src="/images/hero/wildlife.mp4"
+                  controls
+                  muted
+                  className={`w-full h-full object-cover rounded-3xl transition-transform duration-500 ${hoveredOther1 ? 'scale-105 brightness-110' : ''}`}
+                  poster="/images/videos/wedding-1.jpg"
+                  initial={{ opacity: 0, scale: 1.05 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 1.2, ease: 'easeOut' }}
+                />
+                {/* Overlay on hover */}
+                {hoveredOther1 && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 0.9 }}
+                    exit={{ opacity: 0 }}
+                    className="absolute inset-0 bg-gradient-to-br from-pink-700/80 via-purple-700/70 to-pink-900/80 flex items-center justify-center"
+                  >
+                    <Play className="w-16 h-16 text-white animate-pulse" />
+                  </motion.div>
+                )}
+                <motion.div
+                  initial={{ opacity: 0, y: -20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.7, delay: 0.3 }}
+                  className="absolute top-4 left-4 bg-pink-600 text-white px-3 py-1 rounded-full text-xs font-medium shadow-lg"
+                >
+                  Wildlife
+                </motion.div>
               </div>
-              <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Wedding Films</h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-6">
-                Cinematic wedding videos that capture every emotion and precious moment of your special day.
-              </p>
-              <ul className="text-sm text-gray-500 dark:text-gray-400 space-y-2">
-                <li>• Pre-wedding shoots</li>
-                <li>• Ceremony highlights</li>
-                <li>• Reception coverage</li>
-                <li>• Multi-camera setup</li>
-              </ul>
             </motion.div>
-
+            {/* Video 2 */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              initial={{ opacity: 0, scale: 0.95, y: 30 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 1, ease: 'easeOut', delay: 0.1 }}
               viewport={{ once: true }}
-              className="bg-white dark:bg-gray-900 rounded-lg p-8 shadow-lg text-center"
+              className="group rounded-3xl overflow-hidden shadow-xl bg-white dark:bg-gray-900 border-4 border-blue-200 dark:border-blue-900 relative"
+              onMouseEnter={() => setHoveredOther2(true)}
+              onMouseLeave={() => setHoveredOther2(false)}
+              onClick={() => setModalVideo('bts')}
+              style={{ cursor: 'pointer' }}
             >
-              <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mx-auto mb-6">
-                <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
-                  <Video className="w-4 h-4 text-white" />
-                </div>
+              <div className="relative w-full aspect-video">
+                <motion.video
+                  ref={otherVideo2Ref}
+                  src="/images/hero/Behind The Scenes.mp4"
+                  controls
+                  muted
+                  className={`w-full h-full object-cover rounded-3xl transition-transform duration-500 ${hoveredOther2 ? 'scale-105 brightness-110' : ''}`}
+                  poster="/images/videos/corporate-1.jpg"
+                  initial={{ opacity: 0, scale: 1.05 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 1.2, ease: 'easeOut' }}
+                />
+                {/* Overlay on hover */}
+                {hoveredOther2 && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 0.9 }}
+                    exit={{ opacity: 0 }}
+                    className="absolute inset-0 bg-gradient-to-br from-blue-700/80 via-purple-700/70 to-blue-900/80 flex items-center justify-center"
+                  >
+                    <Play className="w-16 h-16 text-white animate-pulse" />
+                  </motion.div>
+                )}
+                <motion.div
+                  initial={{ opacity: 0, y: -20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.7, delay: 0.3 }}
+                  className="absolute top-4 left-4 bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-medium shadow-lg"
+                >
+                  Behind The Scenes
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, y: -20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.7, delay: 0.5 }}
+                  className="absolute top-4 right-4 bg-black/70 text-white px-2 py-1 rounded text-xs"
+                >
+                  2:30
+                </motion.div>
               </div>
-              <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Corporate Videos</h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-6">
-                Professional corporate content that effectively communicates your brand message and values.
-              </p>
-              <ul className="text-sm text-gray-500 dark:text-gray-400 space-y-2">
-                <li>• Brand documentaries</li>
-                <li>• Product launches</li>
-                <li>• Company profiles</li>
-                <li>• Training videos</li>
-              </ul>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              viewport={{ once: true }}
-              className="bg-white dark:bg-gray-900 rounded-lg p-8 shadow-lg text-center"
-            >
-              <div className="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center mx-auto mb-6">
-                <div className="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center">
-                  <ExternalLink className="w-4 h-4 text-white" />
-                </div>
-              </div>
-              <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Promotional Content</h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-6">
-                Creative promotional videos that engage your audience and drive results for your business.
-              </p>
-              <ul className="text-sm text-gray-500 dark:text-gray-400 space-y-2">
-                <li>• Social media content</li>
-                <li>• Music videos</li>
-                <li>• Event coverage</li>
-                <li>• Commercial ads</li>
-              </ul>
             </motion.div>
           </div>
         </div>
       </section>
+
+      {/* Modal for enlarged video */}
+      <AnimatePresence>
+        {modalVideo && (
+          <motion.div
+            key="modal"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm"
+          >
+            <motion.div
+              initial={{ scale: 0.7, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.7, opacity: 0 }}
+              transition={{ duration: 0.4 }}
+              className="relative w-[90vw] max-w-5xl h-[70vh] flex items-center justify-center"
+            >
+              <video
+                src={modalVideoSrc[modalVideo]}
+                poster={modalPoster[modalVideo]}
+                controls
+                autoPlay
+                onEnded={handleVideoEnd}
+                className="w-full h-full object-cover rounded-3xl shadow-2xl border-4 border-blue-400"
+              />
+              <button
+                onClick={() => setModalVideo(null)}
+                className="absolute top-4 right-4 bg-black/70 text-white rounded-full p-2 hover:bg-black/90 transition"
+                aria-label="Close"
+              >
+                <X className="w-7 h-7" />
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gray-900 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="py-20 bg-gradient-to-r from-blue-900 via-blue-700 to-blue-900 text-white">
+        <div className="max-w-3xl mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl font-bold mb-6">
+            <h2 className="text-4xl md:text-5xl font-extrabold mb-4">
               Ready to Tell Your Story?
             </h2>
-            <p className="text-xl text-gray-300 mb-8">
-              Let's collaborate to create a video that captures your vision and connects with your audience.
+            <p className="text-lg mb-8">
+              Let's collaborate to create a film that captures your vision and connects with your audience.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/contact"
-                className="bg-white text-black px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-all duration-300"
+                className="bg-white text-blue-900 px-8 py-4 rounded-full font-semibold hover:bg-blue-100 transition-all duration-300 shadow-lg hover:scale-105"
               >
                 Start Your Project
               </Link>
               <Link
                 href="/bts"
-                className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-black transition-all duration-300"
+                className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-blue-900 transition-all duration-300 shadow-lg hover:scale-105"
               >
                 See Behind The Scenes
               </Link>
