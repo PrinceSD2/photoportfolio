@@ -1,58 +1,136 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Head from "next/head";
 
 const travelImages = [
   {
-    src: "/images/hero/travel1.webp",
-    alt: "Sunrise over mountain range in the Himalayas",
-    location: "Himalayas, India",
-  },
-  {
-    src: "/images/hero/travel1.webp",
-    alt: "Colorful street in Lisbon, Portugal",
-    location: "Lisbon, Portugal",
-  },
-  {
-    src: "/images/hero/travel1.webp",
+    src: "/images/photography/travel/t1.jpg",
     alt: "Palm trees on a tropical beach in Bali",
     location: "Bali, Indonesia",
   },
   {
-    src: "/images/hero/travel1.webp",
-    alt: "Night view of Tokyo cityscape",
-    location: "Tokyo, Japan",
+    src: "/images/photography/travel/t2.jpg",
+    alt: "Palm trees on a tropical beach in Bali",
+    location: "Bali, Indonesia",
   },
   {
-    src: "/images/hero/travel1.webp",
-    alt: "Snowy forest in Norway",
-    location: "Tromsø, Norway",
+   src: "/images/photography/travel/t3.jpg",
+    alt: "Palm trees on a tropical beach in Bali",
+    location: "Bali, Indonesia",
   },
   {
-    src: "/images/hero/travel1.webp",
-    alt: "Traditional boat on Lake Bled",
-    location: "Lake Bled, Slovenia",
+   src: "/images/photography/travel/t4.jpg",
+    alt: "Palm trees on a tropical beach in Bali",
+    location: "Bali, Indonesia",
+  },
+
+  {
+    src: "/images/photography/travel/t6.jpg",
+    alt: "Palm trees on a tropical beach in Bali",
+    location: "Bali, Indonesia",
   },
   {
-    src: "/images/hero/travel1.webp",
-    alt: "Desert dunes under sunset sky",
-    location: "Sahara Desert, Morocco",
+   src: "/images/photography/travel/t7.jpg",
+    alt: "Palm trees on a tropical beach in Bali",
+    location: "Bali, Indonesia",
   },
   {
-    src: "/images/hero/travel1.webp",
-    alt: "Historic architecture in Prague",
-    location: "Prague, Czech Republic",
+    src: "/images/photography/travel/t8.jpg",
+    alt: "Palm trees on a tropical beach in Bali",
+    location: "Bali, Indonesia",
   },
   {
-    src: "/images/hero/travel1.webp",
-    alt: "Historic architecture in Prague",
-    location: "Prague, Czech Republic",
+    src: "/images/photography/travel/t9.jpg",
+    alt: "Palm trees on a tropical beach in Bali",
+    location: "Bali, Indonesia",
+  },
+  {
+    src: "/images/photography/travel/t10.jpg",
+    alt: "Palm trees on a tropical beach in Bali",
+    location: "Bali, Indonesia",
+  },
+  {
+    src: "/images/photography/travel/t11.jpg",
+    alt: "Palm trees on a tropical beach in Bali",
+    location: "Bali, Indonesia",
+  },
+  {
+    src: "/images/photography/travel/t12.jpg",
+    alt: "Palm trees on a tropical beach in Bali",
+    location: "Bali, Indonesia",
+  },
+  {
+    src: "/images/photography/travel/t15.jpg",
+    alt: "Palm trees on a tropical beach in Bali",
+    location: "Bali, Indonesia",
+  },
+  {
+    src: "/images/photography/travel/t17.jpg",
+    alt: "Palm trees on a tropical beach in Bali",
+    location: "Bali, Indonesia",
+  },
+  {
+    src: "/images/photography/travel/t18.jpg",
+    alt: "Palm trees on a tropical beach in Bali",
+    location: "Bali, Indonesia",
+  },{
+    src: "/images/photography/travel/t19.jpg",
+    alt: "Palm trees on a tropical beach in Bali",
+    location: "Bali, Indonesia",
+  },
+  {
+    src: "/images/photography/travel/t20.jpg",
+    alt: "Palm trees on a tropical beach in Bali",
+    location: "Bali, Indonesia",
+  },
+  {
+    src: "/images/photography/travel/t21.jpg",
+    alt: "Palm trees on a tropical beach in Bali",
+    location: "Bali, Indonesia",
+  },{
+    src: "/images/photography/travel/t22.jpg",
+    alt: "Palm trees on a tropical beach in Bali",
+    location: "Bali, Indonesia",
+  },{
+    src: "/images/photography/travel/t23.jpg",
+    alt: "Palm trees on a tropical beach in Bali",
+    location: "Bali, Indonesia",
+  },{
+    src: "/images/photography/travel/t25.jpg",
+    alt: "Palm trees on a tropical beach in Bali",
+    location: "Bali, Indonesia",
+  },{
+    src: "/images/photography/travel/t27.jpg",
+    alt: "Palm trees on a tropical beach in Bali",
+    location: "Bali, Indonesia",
+  },{
+    src: "/images/photography/travel/t28.jpg",
+    alt: "Palm trees on a tropical beach in Bali",
+    location: "Bali, Indonesia",
+  },{
+    src: "/images/photography/travel/t29.jpg",
+    alt: "Palm trees on a tropical beach in Bali",
+    location: "Bali, Indonesia",
   },
 ];
 
 export default function TravelGallery() {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  function openImage(image) {
+    setSelectedImage(image);
+    setModalOpen(true);
+  }
+
+  function closeModal() {
+    setModalOpen(false);
+    setSelectedImage(null);
+  }
+
   return (
     <main className="min-h-screen bg-gradient-to-b from-white via-blue-50 to-blue-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       <Head>
@@ -91,8 +169,8 @@ export default function TravelGallery() {
       </section>
 
       {/* Gallery Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 pb-20">
-        <div className="columns-1 sm:columns-2 md:columns-3 gap-6 space-y-6">
+      <section className="max-w-screen-2xl mx-auto px-2 sm:px-4 pb-20">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {travelImages.map((image, idx) => (
             <motion.figure
               key={idx}
@@ -100,20 +178,23 @@ export default function TravelGallery() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: idx * 0.08 }}
               viewport={{ once: true }}
-              className="relative mb-6 break-inside-avoid group rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow"
+              className="relative group rounded-2xl overflow-hidden shadow-2xl hover:shadow-2xl transition-shadow cursor-pointer border-2 border-blue-200 dark:border-blue-800 bg-white dark:bg-gray-900"
+              onClick={() => openImage(image)}
             >
-              <Image
-                src={image.src}
-                alt={image.alt}
-                width={600}
-                height={800}
-                className="object-cover w-full h-auto max-h-[500px] transition-transform duration-500 group-hover:scale-105"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                loading={idx === 0 ? "eager" : "lazy"}
-                priority={idx === 0}
-              />
-              <figcaption className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 flex items-end justify-start p-4 transition-opacity duration-300">
-                <span className="text-white text-lg font-semibold drop-shadow-lg">
+              <div className="relative w-full h-[450px] md:h-[550px] lg:h-[650px] bg-black flex items-center justify-center">
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  fill
+                  style={{ objectFit: "contain" }}
+                  className="transition-transform duration-500 group-hover:scale-105"
+                  loading={idx === 0 ? "eager" : "lazy"}
+                  priority={idx === 0}
+                  sizes="(max-width: 1024px) 100vw, 33vw"
+                />
+              </div>
+              <figcaption className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 flex items-end justify-start p-4 transition-opacity duration-300">
+                <span className="text-white text-xl font-semibold drop-shadow-lg">
                   {image.location}
                 </span>
               </figcaption>
@@ -121,6 +202,39 @@ export default function TravelGallery() {
           ))}
         </div>
       </section>
+
+      {/* Modal for selected image */}
+      {modalOpen && selectedImage && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50"
+          onClick={closeModal}
+        >
+          <div
+            className="w-screen h-screen flex items-center justify-center relative"
+            onClick={e => e.stopPropagation()}
+          >
+            <button
+              className="absolute top-6 right-10 text-white text-4xl font-bold z-10"
+              onClick={closeModal}
+            >
+              &times;
+            </button>
+            <div className="relative w-full h-full flex items-center justify-center">
+              <Image
+                src={selectedImage.src}
+                alt={selectedImage.alt}
+                fill
+                style={{ objectFit: "contain" }}
+                className="w-full h-full"
+                priority
+              />
+            </div>
+            <div className="absolute bottom-0 left-0 right-0 p-6 text-center font-semibold text-2xl text-white bg-gradient-to-t from-black/80 via-transparent to-transparent">
+              {selectedImage.location}
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Call to Action */}
       <section className="text-center py-12 bg-white dark:bg-gray-900">
