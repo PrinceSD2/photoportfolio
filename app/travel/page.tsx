@@ -50,7 +50,7 @@ const travelImages = [
   {
     src: "/images/photography/travel/t10.jpg",
     alt: "Palm trees on a tropical beach in Bali",
-    location: "Last village of spiti)",
+    location: "Last village of spiti",
   },
   {
     src: "/images/photography/travel/t11.jpg",
@@ -94,27 +94,27 @@ const travelImages = [
   },{
     src: "/images/photography/travel/t22.jpg",
     alt: "Palm trees on a tropical beach in Bali",
-    location: "Bali, Indonesia",
+    location: "Humayun tomb",
   },{
     src: "/images/photography/travel/t23.jpg",
     alt: "Palm trees on a tropical beach in Bali",
-    location: "Bali, Indonesia",
+    location: "KAZA",
   },{
     src: "/images/photography/travel/t25.jpg",
     alt: "Palm trees on a tropical beach in Bali",
-    location: "Bali, Indonesia",
+    location: "Kaza snowfall",
   },{
     src: "/images/photography/travel/t27.jpg",
     alt: "Palm trees on a tropical beach in Bali",
-    location: "Bali, Indonesia",
+    location: "Qutab Minar",
   },{
     src: "/images/photography/travel/t28.jpg",
     alt: "Palm trees on a tropical beach in Bali",
-    location: "Bali, Indonesia",
+    location: "Kibber, spiti",
   },{
     src: "/images/photography/travel/t29.jpg",
     alt: "Palm trees on a tropical beach in Bali",
-    location: "Bali, Indonesia",
+    location: "Delhi",
   },
 ];
 
