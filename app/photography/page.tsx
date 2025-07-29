@@ -9,7 +9,7 @@ import { useRef, useEffect, useState } from 'react'
 const categories = [
   {
     name: 'Product',
-    slug: 'product',
+    slug: 'Product',
     description: 'Commercial photography that makes products shine',
     images: [
     '/images/photography/product/product1.jpg',
@@ -31,7 +31,7 @@ const categories = [
     '/images/photography/product/thumb (2).JPG',
     '/images/photography/product/thumb.jpg'
     ],
-    count: 19,
+    count: 10,
   },
   {
   name: 'Food',
@@ -87,9 +87,10 @@ const categories = [
       '/images/photography/office/o8.jpg',
       '/images/photography/office/o9.jpg',
       '/images/photography/office/o10.jpg',
+      '/images/photography/office/thumb.jpg',
       
     ],
-    count: 10,
+    count: 11,
   },
   {
     name: 'Hotel',
@@ -118,11 +119,20 @@ const categories = [
   
 ]
 
+const scrollVariants = {
+  initial: { x: 0 },
+  animateLeft: { x: '-60%' },
+  animateRight: { x: '60%' },
+};
+
 const PhotographyPage = () => {
   const [hoveredCategory, setHoveredCategory] = useState<number | null>(null);
   const controls = useAnimation();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
+
+  // For 3D tilt effect
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     if (isInView) {
@@ -130,47 +140,49 @@ const PhotographyPage = () => {
     }
   }, [controls, isInView]);
 
-  // Auto-scrolling effect for galleries
+  // Auto-scrolling effect for galleries (left/right)
   useEffect(() => {
-    const galleryWrappers = document.querySelectorAll('.gallery-wrapper');
-    
-    galleryWrappers.forEach(wrapper => {
-      const gallery = wrapper.querySelector('.gallery');
+    const wrappers = document.querySelectorAll('.gallery-3d-wrapper');
+    wrappers.forEach(wrapper => {
+      const gallery = wrapper.querySelector('.gallery-3d');
       if (!gallery) return;
-      
       let scrollAmount = 0;
-      const scrollSpeed = 0.5; // Slower scroll
+      let direction = 1;
+      const scrollSpeed = 1.2;
       let animationId: number;
-      
       const scrollGallery = () => {
         if (!wrapper.matches(':hover')) {
-          scrollAmount += scrollSpeed;
-          if (scrollAmount >= gallery.scrollWidth / 2) {
-            scrollAmount = 0;
-          }
+          scrollAmount += scrollSpeed * direction;
+          if (scrollAmount >= gallery.scrollWidth - gallery.clientWidth) direction = -1;
+          if (scrollAmount <= 0) direction = 1;
           gallery.scrollLeft = scrollAmount;
         }
         animationId = requestAnimationFrame(scrollGallery);
       };
-      
       scrollGallery();
-      
-      return () => {
-        cancelAnimationFrame(animationId);
-      };
+      return () => cancelAnimationFrame(animationId);
     });
   }, []);
 
+  // 3D tilt effect handler
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const { left, top, width, height } = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - left) / width - 0.5) * 20;
+    const y = ((e.clientY - top) / height - 0.5) * 20;
+    setTilt({ x, y });
+  };
+
+  const handleMouseLeave = () => setTilt({ x: 0, y: 0 });
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
-      {/* Hero Section with Snow Mountains */}
-     <section className="relative h-[80vh] overflow-hidden">
+      {/* Hero Section */}
+      <section className="relative h-[80vh] overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-purple-900/20 to-black z-10" />
         <div className="absolute inset-0 z-0">
           <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-purple-600 rounded-full filter blur-[100px] opacity-40" />
           <div className="absolute bottom-1/3 right-1/4 w-48 h-48 bg-blue-500 rounded-full filter blur-[80px] opacity-30" />
         </div>
-        
         <Image
           src="/images/photography-hero.jpg"
           alt="Photography"
@@ -178,7 +190,6 @@ const PhotographyPage = () => {
           className="object-cover"
           priority
         />
-        
         <div className="relative z-20 flex flex-col items-center justify-center h-full text-center text-white px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -189,7 +200,7 @@ const PhotographyPage = () => {
             <motion.div
               initial={{ scale: 0 }}
               animate={{ scale: 1, rotate: 360 }}
-              transition={{ 
+              transition={{
                 duration: 0.8,
                 type: "spring",
                 stiffness: 200,
@@ -199,16 +210,14 @@ const PhotographyPage = () => {
             >
               <Camera className="w-16 h-16 mx-auto text-white" />
             </motion.div>
-            
-            <motion.h1 
-              className="text-5xl md:text-8xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600"
+            <motion.h1
+              className="text-5xl md:text-8xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-600"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.8 }}
             >
               Photography
             </motion.h1>
-            
             <motion.p
               className="text-xl md:text-2xl font-light max-w-2xl mx-auto text-gray-200"
               initial={{ opacity: 0 }}
@@ -217,13 +226,11 @@ const PhotographyPage = () => {
             >
               Every frame tells a story. Explore my universe through these cosmic collections.
             </motion.p>
-            
-           
           </motion.div>
         </div>
       </section>
 
-      {/* Photography Collections */}
+      {/* Interactive Collections */}
       <section className="py-20" ref={ref}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -235,17 +242,17 @@ const PhotographyPage = () => {
             className="text-center mb-20"
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-blue-900">
-              Photography <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-sky-500">Collections</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-sky-500">Collections</span>
             </h2>
             <p className="text-xl text-blue-700 max-w-3xl mx-auto">
               Discover different perspectives through my lens. Each collection represents a unique vision and style.
             </p>
           </motion.div>
 
-          {/* Collection Sections */}
+          {/* 3D Animated Collection Galleries */}
           <div className="space-y-32">
             {categories.map((category, index) => (
-              <motion.div 
+              <motion.div
                 key={category.slug}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -259,9 +266,9 @@ const PhotographyPage = () => {
                   <div className="flex flex-col md:flex-row items-center justify-between mb-8 gap-4">
                     <div className="text-center md:text-left">
                       <h3 className="text-3xl md:text-4xl font-bold text-blue-900 flex items-center justify-center md:justify-start gap-3">
-                        <motion.span 
+                        <motion.span
                           className="w-3 h-3 bg-blue-600 rounded-full"
-                          animate={{ 
+                          animate={{
                             scale: hoveredCategory === index ? [1, 1.5, 1] : 1,
                           }}
                           transition={{ duration: 0.5 }}
@@ -270,8 +277,8 @@ const PhotographyPage = () => {
                       </h3>
                       <p className="text-blue-700 mt-2 max-w-xl">{category.description}</p>
                     </div>
-                    <Link 
-                      href={`/photography/${category.slug}`} 
+                    <Link
+                      href={`/photography/${category.slug}`}
                       className="group flex items-center gap-2 text-blue-600 hover:text-blue-800 transition-colors font-medium px-6 py-3 bg-white rounded-full shadow-md hover:shadow-lg transition-shadow"
                     >
                       View all
@@ -279,34 +286,51 @@ const PhotographyPage = () => {
                     </Link>
                   </div>
 
-                  {/* Horizontal Scrolling Gallery */}
-                  <div className="gallery-wrapper relative group">
+                  {/* 3D Horizontal Scrolling Gallery */}
+                  <div
+                    className="gallery-3d-wrapper relative group w-full"
+                    onMouseMove={handleMouseMove}
+                    onMouseLeave={handleMouseLeave}
+                  >
                     {/* Fade effect on sides */}
-                    <div className="absolute left-0 top-0 h-full w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
-                    <div className="absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
-                    
-                    <div 
-                      className="gallery flex overflow-x-auto pb-8 gap-8 scrollbar-hide"
-                      style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+                    <div className="absolute left-0 top-0 h-full w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+                    <div className="absolute right-0 top-0 h-full w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+
+                    <motion.div
+                      className="gallery-3d flex overflow-x-auto pb-12 gap-12 scrollbar-hide w-full"
+                      style={{
+                        scrollbarWidth: 'none',
+                        msOverflowStyle: 'none',
+                        perspective: 1200,
+                        transformStyle: 'preserve-3d',
+                      }}
+                      animate={{
+                        rotateY: tilt.x,
+                        rotateX: -tilt.y,
+                      }}
+                      transition={{ type: 'spring', stiffness: 100, damping: 20 }}
                     >
                       {(category.images.filter((img): img is string => typeof img === 'string')).map((image, imgIndex) => (
                         <motion.div
                           key={imgIndex}
-                          initial={{ opacity: 0, y: 30 }}
-                          whileInView={{ opacity: 1, y: 0 }}
+                          initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                          whileInView={{ opacity: 1, y: 0, scale: 1 }}
                           transition={{ duration: 0.5, delay: imgIndex * 0.05 }}
                           viewport={{ once: true }}
-                          className="flex-shrink-0 w-96 h-[28rem] relative rounded-2xl overflow-hidden group/card shadow-xl"
+                          className="flex-shrink-0 w-[32rem] h-[36rem] relative rounded-3xl overflow-hidden group/card shadow-2xl"
+                          style={{
+                            transform: `rotateY(${(imgIndex - category.images.length / 2) * 5}deg) scale(${hoveredCategory === index ? 1.05 : 1})`,
+                            boxShadow: hoveredCategory === index ? '0 12px 48px rgba(0,0,80,0.18)' : '0 6px 24px rgba(0,0,80,0.12)',
+                            transition: 'transform 0.4s cubic-bezier(.25,.8,.25,1), box-shadow 0.4s',
+                          }}
                         >
                           <div className="absolute inset-0 bg-gradient-to-t from-blue-900/30 to-transparent z-10" />
-                          
                           <Image
                             src={image}
                             alt={`${category.name} ${imgIndex + 1}`}
                             fill
                             className="object-cover transition-all duration-700 group-hover/card:scale-105"
                           />
-                          
                           {/* Hover overlay */}
                           <div className="absolute inset-0 bg-gradient-to-t from-blue-900/80 via-transparent to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8 z-20">
                             <motion.div
@@ -323,10 +347,8 @@ const PhotographyPage = () => {
                               </p>
                             </motion.div>
                           </div>
-                          
                           {/* Floating frame effect */}
                           <div className="absolute inset-0 border-4 border-transparent group-hover/card:border-white/40 transition-all duration-500 rounded-2xl" />
-                          
                           {/* Floating badge */}
                           <div className="absolute top-6 right-6 bg-white/90 text-blue-900 px-4 py-2 rounded-full font-medium shadow-lg z-20">
                             <span className="flex items-center gap-2">
@@ -336,7 +358,7 @@ const PhotographyPage = () => {
                           </div>
                         </motion.div>
                       ))}
-                    </div>
+                    </motion.div>
                   </div>
                 </div>
               </motion.div>
@@ -362,7 +384,6 @@ const PhotographyPage = () => {
               What people say about working with me
             </p>
           </motion.div>
-
           <div className="grid md:grid-cols-3 gap-8">
             {[1, 2, 3].map((item, index) => (
               <motion.div
@@ -404,7 +425,6 @@ const PhotographyPage = () => {
           <div className="absolute top-0 left-1/4 w-96 h-96 bg-white/10 rounded-full filter blur-[100px] opacity-40" />
           <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-blue-500/20 rounded-full filter blur-[120px] opacity-30" />
         </div>
-        
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -423,7 +443,7 @@ const PhotographyPage = () => {
               className="inline-flex items-center gap-3 bg-white text-blue-800 px-8 py-4 rounded-full font-bold hover:bg-blue-50 transition-all duration-300 shadow-lg shadow-blue-900/30 hover:shadow-blue-900/40 group"
             >
               Book a Session
-              <motion.div 
+              <motion.div
                 animate={{ x: [0, 5, 0] }}
                 transition={{ repeat: Infinity, duration: 1.5 }}
                 className="relative"
@@ -446,13 +466,12 @@ const PhotographyPage = () => {
               </div>
               <p className="mt-2 text-blue-200">Capturing the world, one frame at a time</p>
             </div>
-            
             <div className="flex flex-col items-center md:items-end">
               <div className="flex space-x-6">
                 {['Instagram', 'Twitter', 'Facebook', 'Pinterest'].map((social, index) => (
-                  <a 
-                    key={index} 
-                    href="#" 
+                  <a
+                    key={index}
+                    href="#"
                     className="text-blue-200 hover:text-white transition-colors"
                   >
                     {social}
@@ -469,3 +488,9 @@ const PhotographyPage = () => {
 }
 
 export default PhotographyPage;
+
+
+
+
+
+// I want to implement a full-width horizontal scrolling image gallery in a TypeScript (.tsx) in the product Collection and for other collections too . The scrolling should move from left to right, displaying multiple large images similar to a carousel but without arrows—just smooth, side-scroll on overflow. apply this changfe in the page for all collections of interior , hotel, food , model.
