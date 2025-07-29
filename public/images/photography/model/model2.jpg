@@ -1,0 +1,15 @@
+<svg width="600" height="800" viewBox="0 0 600 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="modelGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" style="stop-color:#fef7ff;stop-opacity:1" />
+<stop offset="100%" style="stop-color:#e879f9;stop-opacity:1" />
+</linearGradient>
+</defs>
+<rect width="600" height="800" fill="url(#modelGrad2)"/>
+<circle cx="300" cy="200" r="60" fill="#a21caf" opacity="0.4"/>
+<rect x="240" y="260" width="120" height="160" rx="60" fill="#a21caf" opacity="0.4"/>
+<rect x="180" y="420" width="80" height="140" rx="40" fill="#a21caf" opacity="0.4"/>
+<rect x="340" y="420" width="80" height="140" rx="40" fill="#a21caf" opacity="0.4"/>
+<polygon points="100,700 200,650 300,680 400,640 500,670 600,720 600,800 0,800" fill="#a21caf" opacity="0.2"/>
+<text x="300" y="750" text-anchor="middle" fill="#86198f" font-family="Inter, sans-serif" font-size="18">Fashion Portrait</text>
+</svg>

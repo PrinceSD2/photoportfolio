@@ -1,0 +1,16 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="hotelGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" style="stop-color:#0f172a;stop-opacity:1" />
+<stop offset="100%" style="stop-color:#1e293b;stop-opacity:1" />
+</linearGradient>
+</defs>
+<rect width="800" height="600" fill="url(#hotelGrad2)"/>
+<rect x="50" y="150" width="700" height="300" rx="15" fill="#f8fafc" opacity="0.95"/>
+<rect x="100" y="200" width="600" height="200" rx="10" fill="#e2e8f0"/>
+<circle cx="400" cy="300" r="80" fill="#fbbf24" opacity="0.8"/>
+<rect x="300" y="350" width="200" height="30" rx="15" fill="#64748b" opacity="0.5"/>
+<rect x="150" y="250" width="80" height="100" fill="#991b1b" opacity="0.7"/>
+<rect x="570" y="250" width="80" height="100" fill="#991b1b" opacity="0.7"/>
+<text x="400" y="550" text-anchor="middle" fill="#f8fafc" font-family="Inter, sans-serif" font-size="18" font-weight="bold">Luxury Suite</text>
+</svg>

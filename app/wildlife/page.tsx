@@ -6,50 +6,117 @@ import Head from "next/head";
 
 const wildlifeImages = [
   {
-    src: "/images/hero/hero2.jpg",
+    src: "/images/photography/wildlife-rdy/1000103119-2.jpg",
     alt: "Close-up portrait of a Bengal tiger in its natural habitat",
     caption: "Bengal Tiger – India",
   },
   {
-    src: "/images/hero/hero2.jpg",
+    src: "/images/photography/wildlife-rdy/b1,,.jpg",
     alt: "Elephant family walking across the savannah during golden hour",
-    caption: "Elephants – Kenya",
+    caption: "Hawk-Eagle",
   },
   {
-    src: "/images/hero/hero2.jpg",
+    src: "/images/photography/wildlife-rdy/b1.jpg",
     alt: "Colorful toucan perched on a branch in the rainforest",
-    caption: "Toucan – Costa Rica",
+    caption: "Indian pitta",
   },
   {
-    src: "/images/hero/hero2.jpg",
+    src: "/images/photography/wildlife-rdy/b2.jpg",
     alt: "A lion resting under the shade in Serengeti National Park",
-    caption: "Lion – Tanzania",
+    caption: "Sloth Bear- India",
   },
   {
-    src: "/images/hero/hero2.jpg",
+    src: "/images/photography/wildlife-rdy/IMG_20241120_194500.jpg",
+    alt: "Close-up portrait of a Bengal tiger in its natural habitat",
+    caption: "Bengal Tiger – India",
+  },
+  
+  {
+    src: "/images/photography/wildlife-rdy/l1.jpg",
     alt: "Snow leopard caught mid-leap in the Himalayas",
-    caption: "Snow Leopard – Himalayas",
+    caption: "Indian Leopard",
   },
   {
-    src: "/images/hero/hero2.jpg",
-    alt: "A family of deer grazing in the dense forest",
-    caption: "Deer – Canada",
+    src: "/images/photography/wildlife-rdy/sloth bear-.jpg",
+    alt: "Elephant family walking across the savannah during golden hour",
+    caption: "Sloth Bear- India",
   },
   {
-    src: "/images/hero/hero2.jpg",
-    alt: "Flamingos standing in a lake at sunset",
-    caption: "Flamingos – Chile",
+    src: "/images/photography/wildlife-rdy/t1.jpg",
+    alt: "Close-up portrait of a Bengal tiger in its natural habitat",
+    caption: "Bengal Tiger – India",
   },
   {
-    src: "/images/hero/hero2.jpg",
-    alt: "A family of deer grazing in the dense forest",
-    caption: "Deer – Canada",
+    src: "/images/photography/wildlife-rdy/t2.jpg",
+    alt: "Close-up portrait of a Bengal tiger in its natural habitat",
+    caption: "Bengal Tiger – India",
   },
   {
-    src: "/images/hero/hero2.jpg",
-    alt: "Flamingos standing in a lake at sunset",
-    caption: "Flamingos – Chile",
+    src: "/images/photography/wildlife-rdy/t5.jpg",
+    alt: "Close-up portrait of a Bengal tiger in its natural habitat",
+    caption: "Bengal Tiger – India",
   },
+  {
+    src: "/images/photography/wildlife-rdy/t7.jpg",
+    alt: "A majestic eagle soaring over a mountain range",
+    caption: "Jungle Babbler– India",
+  },
+  {
+    src: "/images/photography/wildlife-rdy/t9.jpg",
+    alt: "A playful otter swimming in a river",
+    caption: "Pied Kingfisher– India",
+  },
+  {
+    src: "/images/photography/wildlife-rdy/tg1.jpg",
+    alt: "Close-up portrait of a Bengal tiger in its natural habitat",
+    caption: "Bengal Tiger – India",
+  },
+  {
+    src: "/images/photography/wildlife-rdy/tg2.jpg",
+    alt: "Close-up portrait of a Bengal tiger in its natural habitat",
+    caption: "Bengal Tiger – India",
+  },
+  {
+    src: "/images/photography/wildlife-rdy/tg3.jpg",
+    alt: "Close-up portrait of a Bengal tiger in its natural habitat",
+    caption: "Bengal Tiger – India",
+  },
+  {
+    src: "/images/photography/wildlife-rdy/tg5.jpg",
+    alt: "Close-up portrait of a Bengal tiger in its natural habitat",
+    caption: "Bengal Tiger – India",
+  },
+  {
+    src: "/images/photography/wildlife-rdy/tg6.jpg",
+    alt: "Close-up portrait of a Bengal tiger in its natural habitat",
+    caption: "Bengal Tiger – India",
+  },
+  {
+    src: "/images/photography/wildlife-rdy/tg7.jpg",
+    alt: "Close-up portrait of a Bengal tiger in its natural habitat",
+    caption: "Bengal Tiger – India",
+  },
+  {
+    src: "/images/photography/wildlife-rdy/tg8.jpg",
+    alt: "Close-up portrait of a Bengal tiger in its natural habitat",
+    caption: "Bengal Tiger – India",
+  },
+  {
+    src: "/images/photography/wildlife-rdy/tg9.jpg",
+    alt: "Close-up portrait of a Bengal tiger in its natural habitat",
+    caption: "Bengal Tiger – India",
+  },
+  {
+    src: "/images/photography/wildlife-rdy/tgr1-2.jpg",
+    alt: "Close-up portrait of a Bengal tiger in its natural habitat",
+    caption: "Bengal Tiger – India",
+  },
+  {
+    src: "/images/photography/wildlife-rdy/tgr13.jpg",
+    alt: "Close-up portrait of a Bengal tiger in its natural habitat",
+    caption: "Bengal Tiger – India",
+  },
+  
 ];
 
 export default function WildlifePage() {
