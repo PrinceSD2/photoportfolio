@@ -35,44 +35,85 @@ const categories = [
   },
   {
   name: 'Food',
-  slug: 'food',
+  slug: 'Food',
   description: 'From irresistible dishes to polished products — a showcase of culinary and commercial excellence.',
   images: [
    ,
-    '/images/photography/product/b1.jpg',
-    '/images/photography/product/b2.jpg',
-    '/images/photography/product/b3.jpg',
-    '/images/photography/product/b4.jpg',
+    '/images/photography/food/b1.jpg',
+    '/images/photography/food/b1.png',
+    '/images/photography/food/b2.jpg',
+    '/images/photography/food/b3.jpg',
+    '/images/photography/food/b4.jpg',
+    '/images/photography/food/b5.jpg',
+    '/images/photography/food/b6.jpg',
+    '/images/photography/food/b7.jpg',
+    '/images/photography/food/b8.jpg',
+    '/images/photography/food/b9.jpg',
   ],
-  count: 22,
+  count: 10,
 },
 {
     name: 'Model',
     slug: 'model',
     description: 'Portrait and fashion photography showcasing beauty and personality',
-    images: Array(6).fill('/images/photography/model/thumb.jpg'),
-    count: 1,
+    images: [
+   ,
+    '/images/photography/model/f1.jpg',
+    '/images/photography/model/f2.jpg',
+    '/images/photography/model/f3.jpg',
+    '/images/photography/model/f4.jpg',
+    '/images/photography/model/f5.jpg',
+    '/images/photography/model/f6.jpg',
+    '/images/photography/model/f7.jpg',
+    '/images/photography/model/f8.jpg',
+    '/images/photography/model/f9.jpg',
+    '/images/photography/model/f10.jpg',
+
+  ],
+    count: 10,
   },
   {
     name: 'Interior',
     slug: 'Interior',
     description: 'Architectural and interior photography for offices',
     images: [
-      '/images/photography/hotel/1.jpg',
-      '/images/photography/hotel/2.jpg',
-      '/images/photography/hotel/3.jpg',
-      '/images/photography/hotel/4.jpg',
-      '/images/photography/hotel/5.jpg',
-      '/images/photography/hotel/6.jpg',
+      '/images/photography/office/o1.jpg',
+      '/images/photography/office/o2.jpg',
+      '/images/photography/office/o3.jpg',
+      '/images/photography/office/o4.jpg',
+      '/images/photography/office/o5.jpg',
+      '/images/photography/office/o6.jpg',
+      '/images/photography/office/o7.jpg',
+      '/images/photography/office/o8.jpg',
+      '/images/photography/office/o9.jpg',
+      '/images/photography/office/o10.jpg',
+      
     ],
-    count: 6,
+    count: 10,
   },
   {
     name: 'Hotel',
     slug: 'hotel',
     description: 'Architectural and interior photography for hospitality',
-    images: Array(6).fill('/images/photography/hotel/thumb.jpg'),
-    count: 1,
+    images: [
+    '/images/photography/hotel/h1.jpg',
+    '/images/photography/hotel/h2.jpg',       
+    '/images/photography/hotel/h3.jpg',       
+    '/images/photography/hotel/h4.jpg',       
+    '/images/photography/hotel/h5.jpg',       
+    '/images/photography/hotel/h6.jpg',       
+    '/images/photography/hotel/h7.jpg',       
+    '/images/photography/hotel/h8.jpg',       
+    '/images/photography/hotel/h9.jpg',       
+    '/images/photography/hotel/h10.jpg',       
+    '/images/photography/hotel/h11.jpg',       
+    '/images/photography/hotel/h12.jpg',       
+    '/images/photography/hotel/h13.jpg',       
+    '/images/photography/hotel/h14.jpg',       
+    '/images/photography/hotel/h15.jpg',       
+
+    ],
+    count: 10,
   },
   
 ]
@@ -248,7 +289,7 @@ const PhotographyPage = () => {
                       className="gallery flex overflow-x-auto pb-8 gap-8 scrollbar-hide"
                       style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
                     >
-                      {category.images.map((image, imgIndex) => (
+                      {(category.images.filter((img): img is string => typeof img === 'string')).map((image, imgIndex) => (
                         <motion.div
                           key={imgIndex}
                           initial={{ opacity: 0, y: 30 }}
