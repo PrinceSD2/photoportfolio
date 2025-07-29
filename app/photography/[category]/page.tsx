@@ -24,7 +24,7 @@ const categoryData: Record<string, {
   name: 'Product & Food Photography',
   description: 'Making dishes irresistible and products desirable through refined photography.',
   images: [
-    '/images/photography/product/product1.jpg',
+    '/images/photography/product/b1.jpg',
     '/images/photography/product/product2.jpg',
     '/images/photography/product/product3.jpg',
     '/images/photography/product/product4.jpg',

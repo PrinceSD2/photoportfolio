@@ -29,8 +29,8 @@ export function Navbar() {
       <div className="flex justify-between h-16">
         {/* Move the logo to the far left */}
 <div className="flex items-center flex-shrink-0 -ml-80">  {/* Negative margin example */}
-  <Link href="/" className="text-xl font-bold gradient-text">
-    Mohit Raw Photography
+  <Link href="/" className="text-xl font-bold ">
+    Mohit Rao Photography
   </Link>
 </div>
 
