@@ -9,48 +9,48 @@ const travelImages = [
   {
     src: "/images/photography/travel/t1.jpg",
     alt: "Palm trees on a tropical beach in Bali",
-    location: "Bali, Indonesia",
+    location: "Chicham bridge (Highest Suspension bridges in asia)",
   },
   {
     src: "/images/photography/travel/t2.jpg",
     alt: "Palm trees on a tropical beach in Bali",
-    location: "Bali, Indonesia",
+    location: "Kid portrait in spiti",
   },
   {
    src: "/images/photography/travel/t3.jpg",
     alt: "Palm trees on a tropical beach in Bali",
-    location: "Bali, Indonesia",
+    location: "Mountain dog- Manali",
   },
   {
    src: "/images/photography/travel/t4.jpg",
     alt: "Palm trees on a tropical beach in Bali",
-    location: "Bali, Indonesia",
+    location: "Kibber, spiti",
   },
 
   {
     src: "/images/photography/travel/t6.jpg",
     alt: "Palm trees on a tropical beach in Bali",
-    location: "Bali, Indonesia",
+    location: "Snow leopard expidition in Ladakh",
   },
   {
    src: "/images/photography/travel/t7.jpg",
     alt: "Palm trees on a tropical beach in Bali",
-    location: "Bali, Indonesia",
+    location: "Black & white portrait in spiti",
   },
   {
     src: "/images/photography/travel/t8.jpg",
     alt: "Palm trees on a tropical beach in Bali",
-    location: "Bali, Indonesia",
+    location: "B & W Portrait in Spiti",
   },
   {
     src: "/images/photography/travel/t9.jpg",
     alt: "Palm trees on a tropical beach in Bali",
-    location: "Bali, Indonesia",
+    location: "Kibber village",
   },
   {
     src: "/images/photography/travel/t10.jpg",
     alt: "Palm trees on a tropical beach in Bali",
-    location: "Bali, Indonesia",
+    location: "Last village of spiti)",
   },
   {
     src: "/images/photography/travel/t11.jpg",
@@ -60,36 +60,37 @@ const travelImages = [
   {
     src: "/images/photography/travel/t12.jpg",
     alt: "Palm trees on a tropical beach in Bali",
-    location: "Bali, Indonesia",
+    location: "Sun rising in kibber village",
   },
   {
     src: "/images/photography/travel/t15.jpg",
     alt: "Palm trees on a tropical beach in Bali",
-    location: "Bali, Indonesia",
+    location: "Stunning sunrise at chandrshila", 
   },
   {
     src: "/images/photography/travel/t17.jpg",
     alt: "Palm trees on a tropical beach in Bali",
-    location: "Bali, Indonesia",
+    location: "chopta view point",
   },
   {
     src: "/images/photography/travel/t18.jpg",
     alt: "Palm trees on a tropical beach in Bali",
-    location: "Bali, Indonesia",
+    location: "several prominent peaks like Trishul, Nanda Devi, and Chaukhamba",
   },{
     src: "/images/photography/travel/t19.jpg",
     alt: "Palm trees on a tropical beach in Bali",
-    location: "Bali, Indonesia",
+    location: "Chandrshila peak",
   },
   {
     src: "/images/photography/travel/t20.jpg",
     alt: "Palm trees on a tropical beach in Bali",
-    location: "Bali, Indonesia",
+    location: "Himalayan peaks - Meru, Sumeru, Ganesh Parwat, Chaukhamba, Bandarpunch, Nilkantha, Tirsuli, Nanda Devi",
   },
   {
     src: "/images/photography/travel/t21.jpg",
     alt: "Palm trees on a tropical beach in Bali",
-    location: "Bali, Indonesia",
+    location: "Manna village",
+
   },{
     src: "/images/photography/travel/t22.jpg",
     alt: "Palm trees on a tropical beach in Bali",

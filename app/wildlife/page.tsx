@@ -8,12 +8,12 @@ const wildlifeImages = [
   {
     src: "/images/photography/wildlife-rdy/1000103119-2.jpg",
     alt: "Close-up portrait of a Bengal tiger in its natural habitat",
-    caption: "Bengal Tiger – India",
+    caption: "Ranthambore Tiger Reserve (Riddhi) – India",
   },
   {
     src: "/images/photography/wildlife-rdy/b1,,.jpg",
     alt: "Elephant family walking across the savannah during golden hour",
-    caption: "Hawk-Eagle",
+    caption: "Hawk-Eagle -Rajaji tiger reseve ",
   },
   {
     src: "/images/photography/wildlife-rdy/b1.jpg",
@@ -23,38 +23,38 @@ const wildlifeImages = [
   {
     src: "/images/photography/wildlife-rdy/b2.jpg",
     alt: "A lion resting under the shade in Serengeti National Park",
-    caption: "Sloth Bear- India",
+    caption: "Sloth Bear- (Panna)India",
   },
   {
     src: "/images/photography/wildlife-rdy/IMG_20241120_194500.jpg",
     alt: "Close-up portrait of a Bengal tiger in its natural habitat",
-    caption: "Bengal Tiger – India",
+    caption: "Ranthambore tiger reserve – India",
   },
   
   {
     src: "/images/photography/wildlife-rdy/l1.jpg",
     alt: "Snow leopard caught mid-leap in the Himalayas",
-    caption: "Indian Leopard",
+    caption: "Indian Leopard- Rajaji Tiger Reserve",
   },
   {
     src: "/images/photography/wildlife-rdy/sloth bear-.jpg",
     alt: "Elephant family walking across the savannah during golden hour",
-    caption: "Sloth Bear- India",
+    caption: "Sloth Bear(Rajtilak)- India",
   },
   {
     src: "/images/photography/wildlife-rdy/t1.jpg",
     alt: "Close-up portrait of a Bengal tiger in its natural habitat",
-    caption: "Bengal Tiger – India",
+    caption: "Ranthambore tiger reserve – India",
   },
   {
     src: "/images/photography/wildlife-rdy/t2.jpg",
     alt: "Close-up portrait of a Bengal tiger in its natural habitat",
-    caption: "Bengal Tiger – India",
+    caption: "Ranthambore tiger reserve(Riddhi Cubs) – India",
   },
   {
     src: "/images/photography/wildlife-rdy/t5.jpg",
     alt: "Close-up portrait of a Bengal tiger in its natural habitat",
-    caption: "Bengal Tiger – India",
+    caption: "Riddhi cubs playing in water – India",
   },
   {
     src: "/images/photography/wildlife-rdy/t7.jpg",
@@ -69,7 +69,7 @@ const wildlifeImages = [
   {
     src: "/images/photography/wildlife-rdy/tg1.jpg",
     alt: "Close-up portrait of a Bengal tiger in its natural habitat",
-    caption: "Bengal Tiger – India",
+    caption: "Ranthambore tiger reserve(T-86) – India",
   },
   {
     src: "/images/photography/wildlife-rdy/tg2.jpg",
@@ -79,35 +79,35 @@ const wildlifeImages = [
   {
     src: "/images/photography/wildlife-rdy/tg3.jpg",
     alt: "Close-up portrait of a Bengal tiger in its natural habitat",
-    caption: "Bengal Tiger – India",
+    caption: "Ranthambore tiger reserve(Riddhi male adult) – India",
   },
   {
     src: "/images/photography/wildlife-rdy/tg5.jpg",
     alt: "Close-up portrait of a Bengal tiger in its natural habitat",
-    caption: "Bengal Tiger – India",
+    caption: "Ranthambore tiger reserve(Arrowhead cubs) – India",
   },
   {
-    src: "/images/photography/wildlife-rdy/tg6.jpg",
+    src: "/images/photography/wildlife-rdy/tgr1-2.jpg",
     alt: "Close-up portrait of a Bengal tiger in its natural habitat",
-    caption: "Bengal Tiger – India",
+    caption: "Bengal Tiger(Panna) – India",
   },
   {
     src: "/images/photography/wildlife-rdy/tg7.jpg",
     alt: "Close-up portrait of a Bengal tiger in its natural habitat",
-    caption: "Bengal Tiger – India",
+    caption: "Panna tiger reseve(P151) – India",
   },
   {
     src: "/images/photography/wildlife-rdy/tg8.jpg",
     alt: "Close-up portrait of a Bengal tiger in its natural habitat",
-    caption: "Bengal Tiger – India",
+    caption: "Riddhi on a rest mood – India",
   },
   {
     src: "/images/photography/wildlife-rdy/tg9.jpg",
     alt: "Close-up portrait of a Bengal tiger in its natural habitat",
-    caption: "Bengal Tiger – India",
+    caption: "Cub on a playfull mood – India",
   },
   {
-    src: "/images/photography/wildlife-rdy/tgr1-2.jpg",
+    src: "/images/photography/wildlife-rdy/tg6.jpg",
     alt: "Close-up portrait of a Bengal tiger in its natural habitat",
     caption: "Bengal Tiger – India",
   },
