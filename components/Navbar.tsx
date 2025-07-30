@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Menu, X, Moon, Sun } from 'lucide-react'
 import { useTheme } from 'next-themes'
 
@@ -10,6 +10,8 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const pathname = usePathname()
   const { theme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
 
   const navigation = [
     { name: 'Overview', href: '/' },
@@ -50,24 +52,10 @@ export function Navbar() {
             </Link>
           ))}
 
-            
-           <button
-    onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-    className="absolute right-4 p-2 rounded-md hover:bg-accent" // right-4 adds spacing
-  >
-    {theme === 'dark' ? (
-      <Sun className="w-5 h-5" />
-    ) : (
-      <Moon className="w-5 h-5" />
-    )}
-  </button>
-          </div>
-
-          {/* Mobile menu button */}
-          <div className="md:hidden flex items-center space-x-2">
+          {mounted && (
             <button
               onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-              className="p-2 rounded-md hover:bg-accent"
+              className="absolute right-4 p-2 rounded-md hover:bg-accent"
             >
               {theme === 'dark' ? (
                 <Sun className="w-5 h-5" />
@@ -75,7 +63,23 @@ export function Navbar() {
                 <Moon className="w-5 h-5" />
               )}
             </button>
-            
+          )}
+        </div>
+
+          {/* Mobile menu button */}
+          <div className="md:hidden flex items-center space-x-2">
+            {mounted && (
+              <button
+                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                className="p-2 rounded-md hover:bg-accent"
+              >
+                {theme === 'dark' ? (
+                  <Sun className="w-5 h-5" />
+                ) : (
+                  <Moon className="w-5 h-5" />
+                )}
+              </button>
+            )}
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="p-2 rounded-md hover:bg-accent"

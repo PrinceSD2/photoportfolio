@@ -79,31 +79,25 @@ export default function TravelGallery() {
       {/* Gallery Section */}
       <section className="w-full">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
-          {travelImages.map((image, idx) => {
-            const isRotated = image.src === "/images/photography/travel/t.jpg";
-            const isShort = image.src === "/images/photography/travel/t.jpg";
-
-            return (
-              <div
-                key={idx}
-                className={`relative w-full ${isShort ? "h-[30vh]" : "h-[100vw] sm:h-[50vh]"} cursor-pointer`}
-                onClick={() => openImage(image)}
-              >
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  fill
-                  className={`object-cover ${isRotated ? "rotate 90" : ""}`}
-                  loading={idx === 0 ? "eager" : "lazy"}
-                  priority={idx === 0}
-                  style={isRotated ? { transform: "rotate(-90deg)" } : {}}
-                />
-                <div className="absolute bottom-0 left-0 right-0 bg-black/60 p-2 text-white text-sm sm:text-lg font-semibold">
-                  {image.location}
-                </div>
+          {travelImages.map((image, idx) => (
+            <div
+              key={idx}
+              className="relative w-full h-[60vw] sm:h-[40vh] cursor-pointer"
+              onClick={() => openImage(image)}
+            >
+              <Image
+                src={image.src}
+                alt={image.alt}
+                fill
+                className="object-cover"
+                loading={idx === 0 ? "eager" : "lazy"}
+                priority={idx === 0}
+              />
+              <div className="absolute bottom-0 left-0 right-0 bg-black/60 p-2 text-white text-sm sm:text-lg font-semibold">
+                {image.location}
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
       </section>
 

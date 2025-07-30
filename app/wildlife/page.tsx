@@ -158,36 +158,32 @@ export default function WildlifePage() {
       </section>
 
       {/* Gallery Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 pb-20">
-        <div className="columns-1 sm:columns-2 md:columns-3 gap-6 space-y-6">
-          {wildlifeImages.map((image, idx) => (
-            <motion.figure
-              key={idx}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: idx * 0.08 }}
-              viewport={{ once: true }}
-              className="relative mb-6 break-inside-avoid group rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow"
-            >
-              <Image
-                src={image.src}
-                alt={image.alt}
-                width={600}
-                height={800}
-                className="object-cover w-full h-auto max-h-[500px] transition-transform duration-500 group-hover:scale-105"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                loading={idx === 0 ? "eager" : "lazy"}
-                priority={idx === 0}
-              />
-              <figcaption className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 flex items-end justify-start p-4 transition-opacity duration-300">
-                <span className="text-white text-lg font-semibold drop-shadow-lg">
-                  {image.caption}
-                </span>
-              </figcaption>
-            </motion.figure>
-          ))}
-        </div>
-      </section>
+      {/* Gallery Section */}
+<section className="max-w-7xl mx-auto px-4 sm:px-6 pb-20">
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    {wildlifeImages.map((image, idx) => (
+      <motion.figure
+        key={idx}
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: idx * 0.07 }}
+        viewport={{ once: true }}
+        className="relative w-full h-auto aspect-video group overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl"
+      >
+        <Image
+          src={image.src}
+          alt={image.alt}
+          fill
+          className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
+          sizes="(max-width: 768px) 100vw, 50vw"
+        />
+        <figcaption className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/60 to-transparent p-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <p className="text-sm md:text-base font-semibold">{image.caption}</p>
+        </figcaption>
+      </motion.figure>
+    ))}
+  </div>
+</section>
 
       {/* Call to Action */}
       <section className="text-center py-12 bg-white dark:bg-gray-900">
